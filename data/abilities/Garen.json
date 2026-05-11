@@ -1,0 +1,49 @@
+{
+  "champion_key": "Garen",
+  "abilities": {
+    "Q": {
+      "slot": "Q",
+      "name": "Decisive Strike",
+      "cooldown": [8, 8, 8, 8, 8],
+      "cast_time": 0.25,
+      "hits": [
+        {
+          "name": "Empowered Auto",
+          "damage_type": "physical",
+          "base": [30, 55, 80, 105, 130],
+          "ratios": {"total_ad": 0.5},
+          "can_crit": true
+        }
+      ]
+    },
+    "E": {
+      "slot": "E",
+      "name": "Judgment (per spin)",
+      "cooldown": [9, 8.25, 7.5, 6.75, 6],
+      "cast_time": 3.0,
+      "repeat": 7,
+      "hits": [
+        {
+          "name": "Spin",
+          "damage_type": "physical",
+          "base": [4, 8, 12, 16, 20],
+          "ratios": {"bonus_ad": 0.36, "total_ad": 0.36}
+        }
+      ]
+    },
+    "R": {
+      "slot": "R",
+      "name": "Demacian Justice",
+      "cooldown": [120, 100, 80],
+      "cast_time": 0.5,
+      "hits": [
+        {
+          "name": "Execute",
+          "damage_type": "true",
+          "base": [150, 300, 450],
+          "ratios": {"missing_hp": 0.25}
+        }
+      ]
+    }
+  }
+}

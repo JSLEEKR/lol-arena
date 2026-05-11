@@ -11,8 +11,21 @@ dependencies = [
     "tqdm>=4.66",
 ]
 
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pytest-asyncio>=0.23",
+    "ruff>=0.4",
+    "respx>=0.21",
+]
+
 [project.scripts]
 arena = "arena_sim.cli:app"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+filterwarnings = ["ignore::DeprecationWarning"]
 
 [build-system]
 requires = ["hatchling"]

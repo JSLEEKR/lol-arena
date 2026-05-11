@@ -1,0 +1,50 @@
+{
+  "champion_key": "Jhin",
+  "abilities": {
+    "Q": {
+      "slot": "Q",
+      "name": "Dancing Grenade",
+      "cooldown": [9, 8, 7, 6, 5],
+      "cast_time": 0.25,
+      "repeat": 4,
+      "hits": [
+        {
+          "name": "Bounce",
+          "damage_type": "physical",
+          "base": [40, 65, 90, 115, 140],
+          "ratios": {"total_ad": 0.6}
+        }
+      ]
+    },
+    "W": {
+      "slot": "W",
+      "name": "Deadly Flourish",
+      "cooldown": [14, 12, 10, 8, 6],
+      "cast_time": 0.75,
+      "hits": [
+        {
+          "name": "Shot",
+          "damage_type": "physical",
+          "base": [55, 90, 125, 160, 195],
+          "ratios": {"bonus_ad": 0.55}
+        }
+      ]
+    },
+    "R": {
+      "slot": "R",
+      "name": "Curtain Call",
+      "cooldown": [120, 110, 100],
+      "cast_time": 2.0,
+      "repeat": 4,
+      "hits": [
+        {
+          "name": "Shot",
+          "damage_type": "physical",
+          "base": [50, 125, 200],
+          "ratios": {"bonus_ad": 0.2, "missing_hp": 0.25},
+          "can_crit": true
+        }
+      ]
+    }
+  }
+}

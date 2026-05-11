@@ -1,0 +1,41 @@
+{
+  "champion_key": "Vayne",
+  "abilities": {
+    "Q": {
+      "slot": "Q",
+      "name": "Tumble",
+      "cooldown": [6, 5, 4, 3, 2],
+      "cast_time": 0.1,
+      "hits": [
+        {
+          "name": "Empowered Auto",
+          "damage_type": "physical",
+          "base": [0, 0, 0, 0, 0],
+          "ratios": {"total_ad": 1.5},
+          "can_crit": true
+        }
+      ]
+    },
+    "W": {
+      "slot": "W",
+      "name": "Silver Bolts (third hit)",
+      "cooldown": [0, 0, 0, 0, 0],
+      "cast_time": 0,
+      "hits": [
+        {
+          "name": "Silver Bolts proc",
+          "damage_type": "true",
+          "base": [20, 35, 50, 65, 80],
+          "ratios": {"max_hp": 0.08}
+        }
+      ]
+    },
+    "R": {
+      "slot": "R",
+      "name": "Final Hour (passive AD)",
+      "cooldown": [110, 95, 80],
+      "cast_time": 0,
+      "hits": []
+    }
+  }
+}

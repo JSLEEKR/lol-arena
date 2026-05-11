@@ -44,8 +44,7 @@ def _parse_augment(raw: dict[str, Any]) -> Augment | None:
     name = raw.get("name") or raw.get("displayName")
     if aid is None or not name:
         return None
-    # apiName e.g. "AatroxSoulCarverAugment" → champion lock
-    api = raw.get("apiName") or raw.get("nameTra") or ""
+    # TODO(phase2): detect champion-specific augments from apiName prefix
     champ_lock: str | None = None
     return Augment(
         id=aid if isinstance(aid, int) else hash(str(aid)) & 0x7FFFFFFF,
