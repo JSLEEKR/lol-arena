@@ -16,7 +16,8 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 
 from arena_sim.models import Augment, Champion, Item, Rune
-from arena_sim.stats.computed import ATTACK_SPEED_CAP, ComputedStats
+from arena_sim.modes import RIFT, ModeModifiers
+from arena_sim.stats.computed import ComputedStats
 
 
 @dataclass
@@ -28,9 +29,12 @@ class Build:
     items: list[Item] = field(default_factory=list)
     runes: list[Rune] = field(default_factory=list)
     augments: list[Augment] = field(default_factory=list)
+    mode: ModeModifiers = field(default_factory=lambda: RIFT)
 
     def compute(self) -> ComputedStats:
-        return compose(self.champion, self.level, self.items, self.runes, self.augments)
+        return compose(
+            self.champion, self.level, self.items, self.runes, self.augments, self.mode,
+        )
 
 
 def compose(
@@ -39,9 +43,15 @@ def compose(
     items: list[Item],
     runes: list[Rune] | None = None,
     augments: list[Augment] | None = None,
+    mode: ModeModifiers | None = None,
 ) -> ComputedStats:
+    mode = mode or RIFT
     runes = runes or []
     augments = augments or []
+    # Arena gates augments: silently drop them in other modes so accidental
+    # use doesn't pollute the stat block.
+    if not mode.augments_available:
+        augments = []
     base = champion.stats.at_level(level)
 
     cs = ComputedStats(
@@ -102,9 +112,21 @@ def compose(
     growth_mult = n * (0.7025 + 0.0175 * n)
     level_as_pct = champion.stats.attack_speed_per_level / 100.0 * growth_mult
     raw_as = champion.stats.attack_speed * (1 + level_as_pct + bonus_as_pct)
-    cs.attack_speed = min(raw_as, ATTACK_SPEED_CAP)
+    cs.attack_speed = min(raw_as, mode.attack_speed_cap)
 
     # Crit chance cap.
     cs.crit_chance = min(cs.crit_chance, 1.0)
 
+    # Mode modifiers apply to BASE stats only — item/augment bonuses are
+    # external to the champion's intrinsic scaling and don't get amplified.
+    # Flat bonuses go to base_* (level-derived) too.
+    cs.base_hp = cs.base_hp * mode.hp_multiplier + mode.flat_hp_bonus
+    cs.base_ad = cs.base_ad * mode.ad_multiplier + mode.flat_ad_bonus
+    cs.ability_power = cs.ability_power + mode.flat_ap_bonus
+    cs.base_armor = cs.base_armor * mode.armor_multiplier + mode.flat_armor_bonus
+    cs.base_mr = cs.base_mr * mode.mr_multiplier + mode.flat_mr_bonus
+    # Note: ap_multiplier only meaningful for champions whose base AP comes
+    # from passives; not exposed in DDragon, so we skip multiplying AP.
+
+    cs.mode_key = mode.key.value
     return cs

@@ -21,6 +21,7 @@ from arena_sim.data.load_abilities import available_keys as ability_keys
 from arena_sim.data.load_abilities import get as get_abilities
 from arena_sim.dps import DUMMIES, BuildSide, auto_dps, compare_dps, full_rotation, stat_diff
 from arena_sim.models import Augment, Champion, Item
+from arena_sim.modes import get_mode, list_modes
 from arena_sim.stats import compose
 
 console = Console()
@@ -174,6 +175,34 @@ def scrape_runes_cmd(verbose: bool = typer.Option(False, "--verbose", "-v")) -> 
     console.print(f"[green]✓[/green] Scraped {len(runes)} runes")
 
 
+@app.command("modes")
+def modes_cmd() -> None:
+    """List available game modes and their modifiers."""
+    t = Table(title="Game modes")
+    t.add_column("key", style="bold")
+    t.add_column("display")
+    t.add_column("AS cap", justify="right")
+    t.add_column("CD ×", justify="right")
+    t.add_column("mana ×", justify="right")
+    t.add_column("HP ×", justify="right")
+    t.add_column("AD ×", justify="right")
+    t.add_column("augments")
+    for m in list_modes():
+        t.add_row(
+            m.key.value,
+            m.display_name,
+            f"{m.attack_speed_cap:.1f}",
+            f"{m.cooldown_multiplier:.2f}",
+            f"{m.mana_cost_multiplier:.2f}",
+            f"{m.hp_multiplier:.2f}",
+            f"{m.ad_multiplier:.2f}",
+            "✓" if m.augments_available else "—",
+        )
+    console.print(t)
+    for m in list_modes():
+        console.print(f"[bold]{m.key.value}[/bold]: {m.description}")
+
+
 @app.command("info")
 def info_cmd() -> None:
     """Show patch version + scraped data counts + curated coverage."""
@@ -273,12 +302,24 @@ def scrape_all_cmd(verbose: bool = typer.Option(False, "--verbose", "-v")) -> No
 
 # ---------- build ----------
 
+_MODE_HELP = "rift | arena | urf (default: arena)"
+
+
+def _mode_for(name: str):  # type: ignore[no-untyped-def]
+    try:
+        return get_mode(name)
+    except KeyError as e:
+        console.print(f"[red]{e}[/red]")
+        raise typer.Exit(2) from None
+
+
 @build_app.command("inspect")
 def build_inspect(
     champ: str = typer.Option(..., "--champ", "-c", help="Champion key, e.g. Garen"),
     lvl: int = typer.Option(11, "--lvl", "-l", min=1, max=18),
     items: str = typer.Option("", "--items", "-i", help="Comma-separated item names"),
     augments: str = typer.Option("", "--augments", "-a", help="Comma-separated augment names"),
+    mode: str = typer.Option("arena", "--mode", "-m", help=_MODE_HELP),
 ) -> None:
     """Show the final stat block for a champion + build."""
     champs = _load_champions()
@@ -295,9 +336,16 @@ def build_inspect(
     aug_catalog = _load_augments() if aug_names else {}
     resolved_augs = _resolve_augments(aug_names, aug_catalog) if aug_names else []
 
-    stats = compose(champs[champ], level=lvl, items=resolved, augments=resolved_augs)
+    mode_obj = _mode_for(mode)
+    if aug_names and not mode_obj.augments_available:
+        console.print(
+            f"[yellow]Augments are not available in {mode_obj.display_name}; "
+            "they will be ignored.[/yellow]"
+        )
 
-    table = Table(title=f"{champ} @ lvl {lvl}", show_header=False)
+    stats = compose(champs[champ], level=lvl, items=resolved, augments=resolved_augs, mode=mode_obj)
+
+    table = Table(title=f"{champ} @ lvl {lvl} [{mode_obj.display_name}]", show_header=False)
     table.add_column("stat", style="bold")
     table.add_column("value", justify="right")
     table.add_row("HP", f"{stats.hp:.0f} ({stats.base_hp:.0f} + {stats.bonus_hp:.0f})")
@@ -345,6 +393,7 @@ def dps_run(
         0.0, "--missing-hp",
         help="Fraction of target HP missing (0..1), used by execute spells.",
     ),
+    mode: str = typer.Option("arena", "--mode", "-m", help=_MODE_HELP),
 ) -> None:
     """Compute auto-attack + ability DPS against target dummies."""
     champs = _load_champions()
@@ -360,7 +409,10 @@ def dps_run(
     aug_catalog = _load_augments() if aug_names else {}
     resolved_augs = _resolve_augments(aug_names, aug_catalog) if aug_names else []
 
-    stats = compose(champs[champ], level=lvl, items=resolved, augments=resolved_augs)
+    mode_obj = _mode_for(mode)
+    stats = compose(
+        champs[champ], level=lvl, items=resolved, augments=resolved_augs, mode=mode_obj,
+    )
     abilities = get_abilities(champ)
     targets = list(DUMMIES.values()) if target == "all" else [DUMMIES[target.lower()]]
 
@@ -378,7 +430,7 @@ def dps_run(
             )
         return
 
-    summary = Table(title=f"{champ} @ lvl {lvl} — items: {', '.join(i.name for i in resolved) or '(none)'}")
+    summary = Table(title=f"{champ} @ lvl {lvl} [{mode_obj.display_name}] — items: {', '.join(i.name for i in resolved) or '(none)'}")
     summary.add_column("target")
     summary.add_column("burst", justify="right")
     summary.add_column("sustained DPS", justify="right")
@@ -426,6 +478,7 @@ def dps_compare(
     augments_b: str = typer.Option("", "--b-augments"),
     lvl_b: int = typer.Option(11, "--b-lvl", min=1, max=18),
     missing_hp: float = typer.Option(0.0, "--missing-hp"),
+    mode: str = typer.Option("arena", "--mode", "-m", help=_MODE_HELP),
 ) -> None:
     """Compare two builds side-by-side: stats + DPS across all dummies.
 
@@ -447,8 +500,13 @@ def dps_compare(
     resolved_augs_a = _resolve_augments(aug_names_a, aug_catalog) if aug_names_a else []
     resolved_augs_b = _resolve_augments(aug_names_b, aug_catalog) if aug_names_b else []
 
-    stats_a = compose(champs[champ_a], level=lvl_a, items=resolved_a, augments=resolved_augs_a)
-    stats_b = compose(champs[champ_b], level=lvl_b, items=resolved_b, augments=resolved_augs_b)
+    mode_obj = _mode_for(mode)
+    stats_a = compose(
+        champs[champ_a], level=lvl_a, items=resolved_a, augments=resolved_augs_a, mode=mode_obj,
+    )
+    stats_b = compose(
+        champs[champ_b], level=lvl_b, items=resolved_b, augments=resolved_augs_b, mode=mode_obj,
+    )
     side_a = BuildSide(label=f"{champ_a} L{lvl_a}", stats=stats_a,
                        abilities=get_abilities(champ_a), items=resolved_a)
     side_b = BuildSide(label=f"{champ_b} L{lvl_b}", stats=stats_b,

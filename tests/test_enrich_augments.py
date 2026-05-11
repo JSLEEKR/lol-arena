@@ -64,8 +64,10 @@ def test_non_stat_augment_yields_empty() -> None:
 
 
 def test_resolved_value_passed_to_compose() -> None:
-    """Smoke test that an augment with AD actually shows up in ComputedStats."""
+    """Smoke test that an augment with AD actually shows up in ComputedStats.
+    Uses ARENA mode because augments are arena-only."""
     from arena_sim.models import Champion, ChampionStats, ResourceType
+    from arena_sim.modes import ARENA
     from arena_sim.stats import compose
 
     champ = Champion(
@@ -84,7 +86,9 @@ def test_resolved_value_passed_to_compose() -> None:
         description="Gain @AD@ Attack Damage, @AbilityHaste@ Ability Haste, and @Lethality@ Lethality.",
         data_values={"AD": 20, "AbilityHaste": 10, "Lethality": 10},
     ))
-    stats = compose(champ, level=1, items=[], augments=[aug])
-    assert stats.attack_damage == pytest.approx(89)  # 69 base + 20 augment
+    stats = compose(champ, level=1, items=[], augments=[aug], mode=ARENA)
+    # Arena mode multiplies base AD by 1.05, then adds augment bonus
+    assert stats.bonus_ad == 20
+    assert stats.attack_damage == pytest.approx(69 * 1.05 + 20)
     assert stats.ability_haste == 10
     assert stats.lethality == 10

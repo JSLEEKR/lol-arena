@@ -8,7 +8,8 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 
-# Attack speed cap in standard LoL is 2.5; Arena does not change this for champ APIs.
+# Default attack speed cap (Riot's 2.5). Per-mode caps live on ModeModifiers
+# and override this when building stats.
 ATTACK_SPEED_CAP = 2.5
 # Ability haste → cooldown reduction: cd_after = cd / (1 + AH/100)
 # (no cap; though diminishing returns are inherent to the formula)
@@ -65,6 +66,7 @@ class ComputedStats:
     # Provenance (debug / display)
     champion_key: str = ""
     level: int = 1
+    mode_key: str = "rift"
     sources: list[str] = field(default_factory=list)
 
     @property
@@ -94,3 +96,22 @@ class ComputedStats:
     def cooldown(self, base_cd: float) -> float:
         """Apply ability haste to a base cooldown."""
         return base_cd / (1 + self.ability_haste / 100.0)
+
+    def mode_cooldown(self, base_cd: float) -> float:
+        """Apply ability haste AND the current game mode's cooldown modifier.
+
+        URF / similar modes set cooldown_multiplier < 1 and a floor. We import
+        lazily to avoid a circular import: stats.build registers mode_key on
+        the ComputedStats so the engine can look up modifiers here.
+        """
+        from arena_sim.modes import GameModeKey, get_mode
+
+        if not self.mode_key:
+            return self.cooldown(base_cd)
+        try:
+            mode = get_mode(GameModeKey(self.mode_key))
+        except (KeyError, ValueError):
+            return self.cooldown(base_cd)
+        with_haste = self.cooldown(base_cd)
+        scaled = with_haste * mode.cooldown_multiplier
+        return max(scaled, mode.cooldown_floor_sec)

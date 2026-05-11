@@ -166,7 +166,7 @@ def full_rotation(
         abilities_cast += 1
         cd_arr = ab.cooldown or []
         cd = cd_arr[min(rank, len(cd_arr)) - 1] if cd_arr else 0.0
-        cd = stats.cooldown(cd)
+        cd = stats.mode_cooldown(cd)
         longest_cd = max(longest_cd, cd)
 
     auto = auto_dps(stats, target, items=items)
