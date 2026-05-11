@@ -413,7 +413,7 @@ def dps_run(
     stats = compose(
         champs[champ], level=lvl, items=resolved, augments=resolved_augs, mode=mode_obj,
     )
-    abilities = get_abilities(champ)
+    abilities = get_abilities(champ, mode_key=mode_obj.key.value)
     targets = list(DUMMIES.values()) if target == "all" else [DUMMIES[target.lower()]]
 
     if abilities is None:
@@ -507,10 +507,11 @@ def dps_compare(
     stats_b = compose(
         champs[champ_b], level=lvl_b, items=resolved_b, augments=resolved_augs_b, mode=mode_obj,
     )
+    mk = mode_obj.key.value
     side_a = BuildSide(label=f"{champ_a} L{lvl_a}", stats=stats_a,
-                       abilities=get_abilities(champ_a), items=resolved_a)
+                       abilities=get_abilities(champ_a, mode_key=mk), items=resolved_a)
     side_b = BuildSide(label=f"{champ_b} L{lvl_b}", stats=stats_b,
-                       abilities=get_abilities(champ_b), items=resolved_b)
+                       abilities=get_abilities(champ_b, mode_key=mk), items=resolved_b)
 
     # Stat diff
     diff = stat_diff(stats_a, stats_b)
