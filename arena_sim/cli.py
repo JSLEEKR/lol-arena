@@ -14,10 +14,12 @@ from rich.logging import RichHandler
 from rich.table import Table
 
 from arena_sim.data import scrape_augments, scrape_champions, scrape_items, scrape_runes
+from arena_sim.data.enrich_augments import enrich_augment
+from arena_sim.data.enrich_items import enrich_item
 from arena_sim.data.load_abilities import available_keys as ability_keys
 from arena_sim.data.load_abilities import get as get_abilities
-from arena_sim.dps import DUMMIES, auto_dps, full_rotation
-from arena_sim.models import Champion, Item
+from arena_sim.dps import DUMMIES, BuildSide, auto_dps, compare_dps, full_rotation, stat_diff
+from arena_sim.models import Augment, Champion, Item
 from arena_sim.stats import compose
 
 console = Console()
@@ -65,35 +67,61 @@ def _load_items() -> dict[str, Item]:
     blob = json.loads(path.read_text())
     out: dict[str, Item] = {}
     for raw in blob.get("items", []):
-        item = Item.model_validate(raw)
+        item = enrich_item(Item.model_validate(raw))
         out[item.name.lower()] = item
     return out
 
 
 def _resolve_items(item_names: list[str], catalog: dict[str, Item]) -> list[Item]:
-    resolved: list[Item] = []
+    return _resolve_by_name(item_names, catalog, "item")
+
+
+def _resolve_augments(names: list[str], catalog: dict[str, Augment]) -> list[Augment]:
+    return _resolve_by_name(names, catalog, "augment")
+
+
+def _resolve_by_name(names: list[str], catalog: dict, kind: str) -> list:
+    resolved: list = []
     misses: list[str] = []
-    for n in item_names:
+    for n in names:
         key = n.strip().lower()
         if not key:
             continue
         if key in catalog:
             resolved.append(catalog[key])
             continue
-        # fuzzy: substring match
         candidates = [v for k, v in catalog.items() if key in k]
         if len(candidates) == 1:
             resolved.append(candidates[0])
         elif candidates:
-            console.print(f"[yellow]Ambiguous item {n!r}: " +
-                          ", ".join(c.name for c in candidates[:5]) + "[/yellow]")
+            console.print(
+                f"[yellow]Ambiguous {kind} {n!r}: " +
+                ", ".join(c.name for c in candidates[:5]) + "[/yellow]"
+            )
             misses.append(n)
         else:
             misses.append(n)
     if misses:
-        console.print(f"[red]Could not resolve: {', '.join(misses)}[/red]")
+        console.print(f"[red]Could not resolve {kind}(s): {', '.join(misses)}[/red]")
         raise typer.Exit(2)
     return resolved
+
+
+def _load_augments() -> dict[str, Augment]:
+    path = DATA_DIR / "augments.json"
+    if not path.exists():
+        console.print(
+            f"[red]Augment data not found at {path}.[/red] "
+            "Run [bold]arena scrape augments[/bold] first."
+        )
+        raise typer.Exit(2)
+    blob = json.loads(path.read_text())
+    out: dict[str, Augment] = {}
+    raw_list = blob if isinstance(blob, list) else blob.get("augments", [])
+    for raw in raw_list:
+        aug = enrich_augment(Augment.model_validate(raw))
+        out[aug.name.lower()] = aug
+    return out
 
 
 # ---------- scrape ----------
@@ -152,6 +180,7 @@ def build_inspect(
     champ: str = typer.Option(..., "--champ", "-c", help="Champion key, e.g. Garen"),
     lvl: int = typer.Option(11, "--lvl", "-l", min=1, max=18),
     items: str = typer.Option("", "--items", "-i", help="Comma-separated item names"),
+    augments: str = typer.Option("", "--augments", "-a", help="Comma-separated augment names"),
 ) -> None:
     """Show the final stat block for a champion + build."""
     champs = _load_champions()
@@ -164,7 +193,11 @@ def build_inspect(
     catalog = _load_items() if item_names else {}
     resolved = _resolve_items(item_names, catalog) if item_names else []
 
-    stats = compose(champs[champ], level=lvl, items=resolved)
+    aug_names = [s for s in augments.split(",") if s.strip()]
+    aug_catalog = _load_augments() if aug_names else {}
+    resolved_augs = _resolve_augments(aug_names, aug_catalog) if aug_names else []
+
+    stats = compose(champs[champ], level=lvl, items=resolved, augments=resolved_augs)
 
     table = Table(title=f"{champ} @ lvl {lvl}", show_header=False)
     table.add_column("stat", style="bold")
@@ -182,6 +215,8 @@ def build_inspect(
 
     if resolved:
         table.add_row("Items", ", ".join(i.name for i in resolved))
+    if resolved_augs:
+        table.add_row("Augments", ", ".join(a.name for a in resolved_augs))
     console.print(table)
 
 
@@ -205,6 +240,7 @@ def dps_run(
     champ: str = typer.Option(..., "--champ", "-c"),
     lvl: int = typer.Option(11, "--lvl", "-l", min=1, max=18),
     items: str = typer.Option("", "--items", "-i"),
+    augments: str = typer.Option("", "--augments", "-a"),
     target: str = typer.Option("all", "--target", "-t",
                                help="naked|squishy|bruiser|tank|all"),
     missing_hp: float = typer.Option(
@@ -222,7 +258,11 @@ def dps_run(
     catalog = _load_items() if item_names else {}
     resolved = _resolve_items(item_names, catalog) if item_names else []
 
-    stats = compose(champs[champ], level=lvl, items=resolved)
+    aug_names = [s for s in augments.split(",") if s.strip()]
+    aug_catalog = _load_augments() if aug_names else {}
+    resolved_augs = _resolve_augments(aug_names, aug_catalog) if aug_names else []
+
+    stats = compose(champs[champ], level=lvl, items=resolved, augments=resolved_augs)
     abilities = get_abilities(champ)
     targets = list(DUMMIES.values()) if target == "all" else [DUMMIES[target.lower()]]
 
@@ -267,6 +307,86 @@ def dps_list() -> None:
         console.print("[yellow]No ability data yet.[/yellow]")
         return
     console.print(f"Hand-curated champions ({len(keys)}): " + ", ".join(keys))
+
+
+def _format_delta(d: float, *, pct: bool = False) -> str:
+    if abs(d) < 1e-6:
+        return "—"
+    arrow = "[green]▲[/green]" if d > 0 else "[red]▼[/red]"
+    val = f"{d:+.0%}" if pct else f"{d:+.1f}"
+    return f"{arrow} {val}"
+
+
+@dps_app.command("compare")
+def dps_compare(
+    champ_a: str = typer.Option(..., "--a-champ"),
+    items_a: str = typer.Option("", "--a-items"),
+    augments_a: str = typer.Option("", "--a-augments"),
+    lvl_a: int = typer.Option(11, "--a-lvl", min=1, max=18),
+    champ_b: str = typer.Option(..., "--b-champ"),
+    items_b: str = typer.Option("", "--b-items"),
+    augments_b: str = typer.Option("", "--b-augments"),
+    lvl_b: int = typer.Option(11, "--b-lvl", min=1, max=18),
+    missing_hp: float = typer.Option(0.0, "--missing-hp"),
+) -> None:
+    """Compare two builds side-by-side: stats + DPS across all dummies.
+
+    Useful for: "is build X better than build Y?", "which champion wins this matchup?",
+    or "is this 3000g item worth the next tier?".
+    """
+    champs = _load_champions()
+    for c in (champ_a, champ_b):
+        if c not in champs:
+            console.print(f"[red]Unknown champion {c!r}.[/red]")
+            raise typer.Exit(2)
+    catalog = _load_items()
+    resolved_a = _resolve_items([s for s in items_a.split(",") if s.strip()], catalog)
+    resolved_b = _resolve_items([s for s in items_b.split(",") if s.strip()], catalog)
+
+    aug_names_a = [s for s in augments_a.split(",") if s.strip()]
+    aug_names_b = [s for s in augments_b.split(",") if s.strip()]
+    aug_catalog = _load_augments() if (aug_names_a or aug_names_b) else {}
+    resolved_augs_a = _resolve_augments(aug_names_a, aug_catalog) if aug_names_a else []
+    resolved_augs_b = _resolve_augments(aug_names_b, aug_catalog) if aug_names_b else []
+
+    stats_a = compose(champs[champ_a], level=lvl_a, items=resolved_a, augments=resolved_augs_a)
+    stats_b = compose(champs[champ_b], level=lvl_b, items=resolved_b, augments=resolved_augs_b)
+    side_a = BuildSide(label=f"{champ_a} L{lvl_a}", stats=stats_a,
+                       abilities=get_abilities(champ_a))
+    side_b = BuildSide(label=f"{champ_b} L{lvl_b}", stats=stats_b,
+                       abilities=get_abilities(champ_b))
+
+    # Stat diff
+    diff = stat_diff(stats_a, stats_b)
+    stat_table = Table(title=f"Build Stats — {side_a.label} vs {side_b.label}")
+    stat_table.add_column("stat")
+    stat_table.add_column(side_a.label, justify="right")
+    stat_table.add_column(side_b.label, justify="right")
+    stat_table.add_column("Δ", justify="right")
+    for name, (av, bv, dv) in diff.items():
+        is_pct = name in ("Crit", "ArmorPen%")
+        a_str = f"{av:.0%}" if is_pct else f"{av:.1f}"
+        b_str = f"{bv:.0%}" if is_pct else f"{bv:.1f}"
+        stat_table.add_row(name, a_str, b_str, _format_delta(dv, pct=is_pct))
+    console.print(stat_table)
+
+    # DPS diff
+    rows = compare_dps(side_a, side_b, target_missing_hp_pct=missing_hp)
+    dps_table = Table(title="Sustained DPS")
+    dps_table.add_column("target")
+    dps_table.add_column(side_a.label, justify="right")
+    dps_table.add_column(side_b.label, justify="right")
+    dps_table.add_column("Δ DPS", justify="right")
+    dps_table.add_column("Δ %", justify="right")
+    for r in rows:
+        dps_table.add_row(
+            r.target,
+            f"{r.a_dps:.0f}",
+            f"{r.b_dps:.0f}",
+            _format_delta(r.delta),
+            _format_delta(r.delta_pct, pct=True),
+        )
+    console.print(dps_table)
 
 
 def main() -> None:  # pragma: no cover

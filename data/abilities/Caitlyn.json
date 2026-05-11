@@ -1,0 +1,47 @@
+{
+  "champion_key": "Caitlyn",
+  "abilities": {
+    "Q": {
+      "slot": "Q",
+      "name": "Piltover Peacemaker (full charge)",
+      "cooldown": [10, 9, 8, 7, 6],
+      "cast_time": 0.625,
+      "hits": [
+        {
+          "name": "Shot",
+          "damage_type": "physical",
+          "base": [50, 90, 130, 170, 210],
+          "ratios": {"total_ad": 1.3}
+        }
+      ]
+    },
+    "W": {
+      "slot": "W",
+      "name": "Yordle Snap Trap",
+      "cooldown": [12, 11, 10, 9, 8],
+      "cast_time": 0.25,
+      "hits": [
+        {
+          "name": "Trap",
+          "damage_type": "magical",
+          "base": [60, 110, 160, 210, 260],
+          "ratios": {"ap": 0.5}
+        }
+      ]
+    },
+    "R": {
+      "slot": "R",
+      "name": "Ace in the Hole",
+      "cooldown": [90, 75, 60],
+      "cast_time": 1.0,
+      "hits": [
+        {
+          "name": "Snipe",
+          "damage_type": "physical",
+          "base": [300, 525, 750],
+          "ratios": {"bonus_ad": 2.0}
+        }
+      ]
+    }
+  }
+}

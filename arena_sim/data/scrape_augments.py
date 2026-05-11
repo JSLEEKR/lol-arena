@@ -39,6 +39,25 @@ def _parse_rarity(raw: Any) -> AugmentRarity:
     return AugmentRarity.UNKNOWN
 
 
+def _flatten_data_values(dv: dict[str, list[float]] | None) -> dict[str, float]:
+    """Take the base level value (index 0) of each Riot dataValues entry.
+
+    Arena augments have one effective level, so index 0 is the canonical value.
+    """
+    if not dv:
+        return {}
+    out: dict[str, float] = {}
+    for k, v in dv.items():
+        if isinstance(v, list) and v:
+            try:
+                out[k] = float(v[0])
+            except (TypeError, ValueError):
+                continue
+        elif isinstance(v, (int, float)):
+            out[k] = float(v)
+    return out
+
+
 def _parse_augment(raw: dict[str, Any]) -> Augment | None:
     aid = raw.get("id") or raw.get("contentId")
     name = raw.get("name") or raw.get("displayName")
@@ -49,10 +68,12 @@ def _parse_augment(raw: dict[str, Any]) -> Augment | None:
     return Augment(
         id=aid if isinstance(aid, int) else hash(str(aid)) & 0x7FFFFFFF,
         name=name,
+        api_name=raw.get("apiName", "") or "",
         description=raw.get("desc") or raw.get("description") or raw.get("tooltip") or "",
         rarity=_parse_rarity(raw.get("rarity")),
         champion_lock=champ_lock,
         tags=[t for t in [raw.get("category")] if t],
+        data_values=_flatten_data_values(raw.get("dataValues")),
         raw=raw,
     )
 

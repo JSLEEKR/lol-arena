@@ -15,7 +15,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 
-from arena_sim.models import Champion, Item, Rune
+from arena_sim.models import Augment, Champion, Item, Rune
 from arena_sim.stats.computed import ATTACK_SPEED_CAP, ComputedStats
 
 
@@ -27,9 +27,10 @@ class Build:
     level: int
     items: list[Item] = field(default_factory=list)
     runes: list[Rune] = field(default_factory=list)
+    augments: list[Augment] = field(default_factory=list)
 
     def compute(self) -> ComputedStats:
-        return compose(self.champion, self.level, self.items, self.runes)
+        return compose(self.champion, self.level, self.items, self.runes, self.augments)
 
 
 def compose(
@@ -37,8 +38,10 @@ def compose(
     level: int,
     items: list[Item],
     runes: list[Rune] | None = None,
+    augments: list[Augment] | None = None,
 ) -> ComputedStats:
     runes = runes or []
+    augments = augments or []
     base = champion.stats.at_level(level)
 
     cs = ComputedStats(
@@ -56,10 +59,18 @@ def compose(
         attack_range=base["attack_range"],
     )
 
-    # Sum item + rune flat contributions.
+    # Each stat source contributes a (stats_block, label) pair so the same
+    # loop handles items, runes, and augments (which expose stat_effects).
+    sources: list[tuple[object, str]] = []
+    for it in items:
+        sources.append((it.stats, it.name))
+    for ru in runes:
+        sources.append((getattr(ru, "stats", None), ru.name))
+    for au in augments:
+        sources.append((au.stat_effects, au.name))
+
     bonus_as_pct = 0.0
-    for src in (*items, *runes):
-        stats = getattr(src, "stats", None)
+    for stats, src_name in sources:
         if stats is None:
             continue
         cs.bonus_hp += getattr(stats, "hp", 0)
@@ -83,9 +94,8 @@ def compose(
         cs.tenacity += getattr(stats, "tenacity", 0)
         cs.heal_shield_power += getattr(stats, "heal_shield_power", 0)
         bonus_as_pct += getattr(stats, "attack_speed_pct", 0)
-        sname = getattr(src, "name", "")
-        if sname:
-            cs.sources.append(sname)
+        if src_name:
+            cs.sources.append(src_name)
 
     # Attack speed: champ_base * (1 + level_growth% + bonus%)
     n = level - 1

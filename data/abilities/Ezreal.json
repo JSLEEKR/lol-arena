@@ -1,0 +1,47 @@
+{
+  "champion_key": "Ezreal",
+  "abilities": {
+    "Q": {
+      "slot": "Q",
+      "name": "Mystic Shot",
+      "cooldown": [7, 6.25, 5.5, 4.75, 4],
+      "cast_time": 0.25,
+      "hits": [
+        {
+          "name": "Bolt",
+          "damage_type": "physical",
+          "base": [20, 50, 80, 110, 140],
+          "ratios": {"total_ad": 1.3, "bonus_ad": 0.0, "ap": 0.15}
+        }
+      ]
+    },
+    "W": {
+      "slot": "W",
+      "name": "Essence Flux",
+      "cooldown": [12, 12, 12, 12, 12],
+      "cast_time": 0.25,
+      "hits": [
+        {
+          "name": "Detonation",
+          "damage_type": "magical",
+          "base": [70, 95, 120, 145, 170],
+          "ratios": {"ap": 0.6, "bonus_ad": 0.5}
+        }
+      ]
+    },
+    "R": {
+      "slot": "R",
+      "name": "Trueshot Barrage",
+      "cooldown": [120, 105, 90],
+      "cast_time": 1.0,
+      "hits": [
+        {
+          "name": "Beam",
+          "damage_type": "magical",
+          "base": [350, 500, 650],
+          "ratios": {"ap": 0.9, "bonus_ad": 1.0}
+        }
+      ]
+    }
+  }
+}
