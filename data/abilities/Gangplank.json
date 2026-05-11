@@ -1,0 +1,56 @@
+{
+  "champion_key": "Gangplank",
+  "abilities": {
+    "Q": {
+      "slot": "Q",
+      "name": "Parrrley",
+      "cooldown": [
+        4.5,
+        4.5,
+        4.5,
+        4.5,
+        4.5
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "W": {
+      "slot": "W",
+      "name": "Remove Scurvy",
+      "cooldown": [
+        22.0,
+        20.0,
+        18.0,
+        16.0,
+        14.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "E": {
+      "slot": "E",
+      "name": "Powder Keg",
+      "cooldown": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "R": {
+      "slot": "R",
+      "name": "Cannon Barrage",
+      "cooldown": [
+        160.0,
+        140.0,
+        120.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    }
+  },
+  "verified": false
+}

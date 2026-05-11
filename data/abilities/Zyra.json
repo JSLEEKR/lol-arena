@@ -1,0 +1,56 @@
+{
+  "champion_key": "Zyra",
+  "abilities": {
+    "Q": {
+      "slot": "Q",
+      "name": "Deadly Spines",
+      "cooldown": [
+        7.0,
+        6.5,
+        6.0,
+        5.5,
+        5.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "W": {
+      "slot": "W",
+      "name": "Rampant Growth",
+      "cooldown": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "E": {
+      "slot": "E",
+      "name": "Grasping Roots",
+      "cooldown": [
+        11.0,
+        11.0,
+        11.0,
+        11.0,
+        11.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "R": {
+      "slot": "R",
+      "name": "Stranglethorns",
+      "cooldown": [
+        110.0,
+        100.0,
+        90.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    }
+  },
+  "verified": false
+}

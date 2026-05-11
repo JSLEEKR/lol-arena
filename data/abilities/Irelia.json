@@ -1,0 +1,56 @@
+{
+  "champion_key": "Irelia",
+  "abilities": {
+    "Q": {
+      "slot": "Q",
+      "name": "Bladesurge",
+      "cooldown": [
+        10.0,
+        9.0,
+        8.0,
+        7.0,
+        6.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "W": {
+      "slot": "W",
+      "name": "Defiant Dance",
+      "cooldown": [
+        20.0,
+        18.0,
+        16.0,
+        14.0,
+        12.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "E": {
+      "slot": "E",
+      "name": "Flawless Duet",
+      "cooldown": [
+        16.0,
+        14.5,
+        13.0,
+        11.5,
+        10.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "R": {
+      "slot": "R",
+      "name": "Vanguard's Edge",
+      "cooldown": [
+        125.0,
+        105.0,
+        85.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    }
+  },
+  "verified": false
+}

@@ -1,0 +1,56 @@
+{
+  "champion_key": "Zac",
+  "abilities": {
+    "Q": {
+      "slot": "Q",
+      "name": "Stretching Strikes",
+      "cooldown": [
+        14.0,
+        12.5,
+        11.0,
+        9.5,
+        8.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "W": {
+      "slot": "W",
+      "name": "Unstable Matter",
+      "cooldown": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "E": {
+      "slot": "E",
+      "name": "Elastic Slingshot",
+      "cooldown": [
+        22.0,
+        19.0,
+        16.0,
+        13.0,
+        10.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "R": {
+      "slot": "R",
+      "name": "Let's Bounce!",
+      "cooldown": [
+        120.0,
+        105.0,
+        90.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    }
+  },
+  "verified": false
+}

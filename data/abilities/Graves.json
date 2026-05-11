@@ -1,0 +1,56 @@
+{
+  "champion_key": "Graves",
+  "abilities": {
+    "Q": {
+      "slot": "Q",
+      "name": "End of the Line",
+      "cooldown": [
+        13.0,
+        11.25,
+        9.5,
+        7.75,
+        6.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "W": {
+      "slot": "W",
+      "name": "Smoke Screen",
+      "cooldown": [
+        26.0,
+        24.0,
+        22.0,
+        20.0,
+        18.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "E": {
+      "slot": "E",
+      "name": "Quickdraw",
+      "cooldown": [
+        16.0,
+        15.0,
+        14.0,
+        13.0,
+        12.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "R": {
+      "slot": "R",
+      "name": "Collateral Damage",
+      "cooldown": [
+        100.0,
+        80.0,
+        60.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    }
+  },
+  "verified": false
+}

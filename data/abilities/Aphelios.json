@@ -1,0 +1,59 @@
+{
+  "champion_key": "Aphelios",
+  "abilities": {
+    "Q": {
+      "slot": "Q",
+      "name": "Weapon Abilites",
+      "cooldown": [
+        9.0,
+        9.0,
+        9.0,
+        9.0,
+        9.0,
+        9.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "W": {
+      "slot": "W",
+      "name": "Phase",
+      "cooldown": [
+        0.8,
+        0.8,
+        0.8,
+        0.8,
+        0.8,
+        0.8
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "E": {
+      "slot": "E",
+      "name": "Weapon Queue System",
+      "cooldown": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "R": {
+      "slot": "R",
+      "name": "Moonlight Vigil",
+      "cooldown": [
+        120.0,
+        110.0,
+        100.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    }
+  },
+  "verified": false
+}

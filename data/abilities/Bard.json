@@ -1,0 +1,56 @@
+{
+  "champion_key": "Bard",
+  "abilities": {
+    "Q": {
+      "slot": "Q",
+      "name": "Cosmic Binding",
+      "cooldown": [
+        11.0,
+        10.0,
+        9.0,
+        8.0,
+        7.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "W": {
+      "slot": "W",
+      "name": "Caretaker's Shrine",
+      "cooldown": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "E": {
+      "slot": "E",
+      "name": "Magical Journey",
+      "cooldown": [
+        22.0,
+        20.5,
+        19.0,
+        17.5,
+        16.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "R": {
+      "slot": "R",
+      "name": "Tempered Fate",
+      "cooldown": [
+        110.0,
+        95.0,
+        80.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    }
+  },
+  "verified": false
+}

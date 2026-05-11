@@ -1,0 +1,56 @@
+{
+  "champion_key": "Malzahar",
+  "abilities": {
+    "Q": {
+      "slot": "Q",
+      "name": "Call of the Void",
+      "cooldown": [
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "W": {
+      "slot": "W",
+      "name": "Void Swarm",
+      "cooldown": [
+        8.0,
+        8.0,
+        8.0,
+        8.0,
+        8.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "E": {
+      "slot": "E",
+      "name": "Malefic Visions",
+      "cooldown": [
+        11.0,
+        10.0,
+        9.0,
+        8.0,
+        7.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "R": {
+      "slot": "R",
+      "name": "Nether Grasp",
+      "cooldown": [
+        140.0,
+        110.0,
+        80.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    }
+  },
+  "verified": false
+}

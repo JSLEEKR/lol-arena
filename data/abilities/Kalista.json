@@ -1,0 +1,56 @@
+{
+  "champion_key": "Kalista",
+  "abilities": {
+    "Q": {
+      "slot": "Q",
+      "name": "Pierce",
+      "cooldown": [
+        9.0,
+        9.0,
+        9.0,
+        9.0,
+        9.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "W": {
+      "slot": "W",
+      "name": "Sentinel",
+      "cooldown": [
+        30.0,
+        30.0,
+        30.0,
+        30.0,
+        30.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "E": {
+      "slot": "E",
+      "name": "Rend",
+      "cooldown": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "R": {
+      "slot": "R",
+      "name": "Fate's Call",
+      "cooldown": [
+        160.0,
+        140.0,
+        120.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    }
+  },
+  "verified": false
+}

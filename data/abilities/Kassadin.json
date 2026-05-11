@@ -1,0 +1,56 @@
+{
+  "champion_key": "Kassadin",
+  "abilities": {
+    "Q": {
+      "slot": "Q",
+      "name": "Null Sphere",
+      "cooldown": [
+        10.0,
+        9.5,
+        9.0,
+        8.5,
+        8.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "W": {
+      "slot": "W",
+      "name": "Nether Blade",
+      "cooldown": [
+        7.0,
+        7.0,
+        7.0,
+        7.0,
+        7.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "E": {
+      "slot": "E",
+      "name": "Force Pulse",
+      "cooldown": [
+        21.0,
+        20.0,
+        19.0,
+        18.0,
+        17.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "R": {
+      "slot": "R",
+      "name": "Riftwalk",
+      "cooldown": [
+        5.0,
+        3.5,
+        2.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    }
+  },
+  "verified": false
+}

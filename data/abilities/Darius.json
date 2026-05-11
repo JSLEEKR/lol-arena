@@ -4,28 +4,56 @@
     "Q": {
       "slot": "Q",
       "name": "Decimate (outer edge)",
-      "cooldown": [10, 9, 8, 7, 6],
+      "cooldown": [
+        10,
+        9,
+        8,
+        7,
+        6
+      ],
       "cast_time": 0.75,
       "hits": [
         {
           "name": "Blade",
           "damage_type": "physical",
-          "base": [40, 65, 90, 115, 140],
-          "ratios": {"total_ad": 1.0}
+          "base": [
+            40,
+            65,
+            90,
+            115,
+            140
+          ],
+          "ratios": {
+            "total_ad": 1.0
+          }
         }
       ]
     },
     "W": {
       "slot": "W",
       "name": "Crippling Strike (empowered AA)",
-      "cooldown": [6, 5, 4, 3, 2],
+      "cooldown": [
+        6,
+        5,
+        4,
+        3,
+        2
+      ],
       "cast_time": 0.25,
       "hits": [
         {
           "name": "Strike",
           "damage_type": "physical",
-          "base": [40, 70, 100, 130, 160],
-          "ratios": {"total_ad": 0.4},
+          "base": [
+            40,
+            70,
+            100,
+            130,
+            160
+          ],
+          "ratios": {
+            "total_ad": 0.4
+          },
           "can_crit": true
         }
       ]
@@ -33,16 +61,27 @@
     "R": {
       "slot": "R",
       "name": "Noxian Guillotine",
-      "cooldown": [120, 100, 80],
+      "cooldown": [
+        120,
+        100,
+        80
+      ],
       "cast_time": 0.4,
       "hits": [
         {
           "name": "Execute",
           "damage_type": "true",
-          "base": [100, 200, 300],
-          "ratios": {"bonus_ad": 0.75}
+          "base": [
+            100,
+            200,
+            300
+          ],
+          "ratios": {
+            "bonus_ad": 0.75
+          }
         }
       ]
     }
-  }
+  },
+  "verified": true
 }

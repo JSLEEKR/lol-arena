@@ -1,0 +1,56 @@
+{
+  "champion_key": "JarvanIV",
+  "abilities": {
+    "Q": {
+      "slot": "Q",
+      "name": "Dragon Strike",
+      "cooldown": [
+        10.0,
+        9.0,
+        8.0,
+        7.0,
+        6.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "W": {
+      "slot": "W",
+      "name": "Golden Aegis",
+      "cooldown": [
+        9.0,
+        9.0,
+        9.0,
+        9.0,
+        9.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "E": {
+      "slot": "E",
+      "name": "Demacian Standard",
+      "cooldown": [
+        12.0,
+        11.5,
+        11.0,
+        10.5,
+        10.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "R": {
+      "slot": "R",
+      "name": "Cataclysm",
+      "cooldown": [
+        120.0,
+        105.0,
+        90.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    }
+  },
+  "verified": false
+}

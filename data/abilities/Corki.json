@@ -1,0 +1,56 @@
+{
+  "champion_key": "Corki",
+  "abilities": {
+    "Q": {
+      "slot": "Q",
+      "name": "Phosphorus Bomb",
+      "cooldown": [
+        9.0,
+        8.5,
+        8.0,
+        7.5,
+        7.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "W": {
+      "slot": "W",
+      "name": "Valkyrie",
+      "cooldown": [
+        20.0,
+        18.0,
+        16.0,
+        14.0,
+        12.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "E": {
+      "slot": "E",
+      "name": "Gatling Gun",
+      "cooldown": [
+        12.0,
+        12.0,
+        12.0,
+        12.0,
+        12.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "R": {
+      "slot": "R",
+      "name": "Missile Barrage",
+      "cooldown": [
+        2.0,
+        2.0,
+        2.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    }
+  },
+  "verified": false
+}

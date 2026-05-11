@@ -4,14 +4,28 @@
     "Q": {
       "slot": "Q",
       "name": "Dance of Arrows",
-      "cooldown": [8, 7, 6, 5, 4],
+      "cooldown": [
+        8,
+        7,
+        6,
+        5,
+        4
+      ],
       "cast_time": 0.25,
       "hits": [
         {
           "name": "Arrow",
           "damage_type": "physical",
-          "base": [25, 40, 55, 70, 85],
-          "ratios": {"total_ad": 0.85},
+          "base": [
+            25,
+            40,
+            55,
+            70,
+            85
+          ],
+          "ratios": {
+            "total_ad": 0.85
+          },
           "can_crit": true
         }
       ]
@@ -19,23 +33,43 @@
     "E": {
       "slot": "E",
       "name": "Mounting Dread",
-      "cooldown": [14, 12.5, 11, 9.5, 8],
+      "cooldown": [
+        14,
+        12.5,
+        11,
+        9.5,
+        8
+      ],
       "cast_time": 0.25,
       "hits": [
         {
           "name": "Strike",
           "damage_type": "physical",
-          "base": [80, 110, 140, 170, 200],
-          "ratios": {"bonus_ad": 0.8, "current_hp": 0.12}
+          "base": [
+            80,
+            110,
+            140,
+            170,
+            200
+          ],
+          "ratios": {
+            "bonus_ad": 0.8,
+            "current_hp": 0.12
+          }
         }
       ]
     },
     "R": {
       "slot": "R",
       "name": "Lamb's Respite (zone, no damage)",
-      "cooldown": [180, 150, 120],
+      "cooldown": [
+        180,
+        150,
+        120
+      ],
       "cast_time": 0,
       "hits": []
     }
-  }
+  },
+  "verified": true
 }

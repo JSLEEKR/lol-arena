@@ -1,0 +1,56 @@
+{
+  "champion_key": "Lillia",
+  "abilities": {
+    "Q": {
+      "slot": "Q",
+      "name": "Blooming Blows",
+      "cooldown": [
+        6.0,
+        5.5,
+        5.0,
+        4.5,
+        4.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "W": {
+      "slot": "W",
+      "name": "Watch Out! Eep!",
+      "cooldown": [
+        14.0,
+        13.0,
+        12.0,
+        11.0,
+        10.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "E": {
+      "slot": "E",
+      "name": "Swirlseed",
+      "cooldown": [
+        12.0,
+        12.0,
+        12.0,
+        12.0,
+        12.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "R": {
+      "slot": "R",
+      "name": "Lilting Lullaby",
+      "cooldown": [
+        150.0,
+        130.0,
+        110.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    }
+  },
+  "verified": false
+}

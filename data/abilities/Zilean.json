@@ -1,0 +1,56 @@
+{
+  "champion_key": "Zilean",
+  "abilities": {
+    "Q": {
+      "slot": "Q",
+      "name": "Time Bomb",
+      "cooldown": [
+        10.0,
+        9.5,
+        9.0,
+        8.5,
+        8.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "W": {
+      "slot": "W",
+      "name": "Rewind",
+      "cooldown": [
+        14.0,
+        12.0,
+        10.0,
+        8.0,
+        6.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "E": {
+      "slot": "E",
+      "name": "Time Warp",
+      "cooldown": [
+        15.0,
+        15.0,
+        15.0,
+        15.0,
+        15.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "R": {
+      "slot": "R",
+      "name": "Chronoshift",
+      "cooldown": [
+        120.0,
+        90.0,
+        60.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    }
+  },
+  "verified": false
+}

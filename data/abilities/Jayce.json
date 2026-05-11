@@ -1,0 +1,57 @@
+{
+  "champion_key": "Jayce",
+  "abilities": {
+    "Q": {
+      "slot": "Q",
+      "name": "To the Skies! / Shock Blast",
+      "cooldown": [
+        16.0,
+        14.0,
+        12.0,
+        10.0,
+        8.0,
+        6.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "W": {
+      "slot": "W",
+      "name": "Lightning Field / Hyper Charge",
+      "cooldown": [
+        10.0,
+        10.0,
+        10.0,
+        10.0,
+        10.0,
+        10.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "E": {
+      "slot": "E",
+      "name": "Thundering Blow / Acceleration Gate",
+      "cooldown": [
+        20.0,
+        18.0,
+        16.0,
+        14.0,
+        12.0,
+        10.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "R": {
+      "slot": "R",
+      "name": "Mercury Cannon / Mercury Hammer",
+      "cooldown": [
+        6.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    }
+  },
+  "verified": false
+}

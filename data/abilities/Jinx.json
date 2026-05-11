@@ -1,0 +1,56 @@
+{
+  "champion_key": "Jinx",
+  "abilities": {
+    "Q": {
+      "slot": "Q",
+      "name": "Switcheroo!",
+      "cooldown": [
+        0.9,
+        0.9,
+        0.9,
+        0.9,
+        0.9
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "W": {
+      "slot": "W",
+      "name": "Zap!",
+      "cooldown": [
+        8.0,
+        7.0,
+        6.0,
+        5.0,
+        4.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "E": {
+      "slot": "E",
+      "name": "Flame Chompers!",
+      "cooldown": [
+        24.0,
+        20.5,
+        17.0,
+        13.5,
+        10.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "R": {
+      "slot": "R",
+      "name": "Super Mega Death Rocket!",
+      "cooldown": [
+        85.0,
+        65.0,
+        45.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    }
+  },
+  "verified": false
+}

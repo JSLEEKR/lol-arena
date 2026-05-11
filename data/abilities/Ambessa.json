@@ -1,0 +1,56 @@
+{
+  "champion_key": "Ambessa",
+  "abilities": {
+    "Q": {
+      "slot": "Q",
+      "name": "Cunning Sweep / Sundering Slam",
+      "cooldown": [
+        14.0,
+        13.0,
+        12.0,
+        11.0,
+        10.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "W": {
+      "slot": "W",
+      "name": "Repudiation",
+      "cooldown": [
+        18.0,
+        17.0,
+        16.0,
+        15.0,
+        14.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "E": {
+      "slot": "E",
+      "name": "Lacerate",
+      "cooldown": [
+        13.0,
+        12.0,
+        11.0,
+        10.0,
+        9.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "R": {
+      "slot": "R",
+      "name": "Public Execution",
+      "cooldown": [
+        130.0,
+        115.0,
+        100.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    }
+  },
+  "verified": false
+}

@@ -1,7 +1,7 @@
 [project]
 name = "arena-sim"
-version = "0.2.0"
-description = "LoL Arena DPS calculator and stat aggregator"
+version = "1.0.0"
+description = "LoL theorycrafting toolkit for Summoner's Rift, Arena, and URF"
 requires-python = ">=3.11"
 dependencies = [
     "httpx>=0.27",
@@ -17,6 +17,11 @@ dev = [
     "pytest-asyncio>=0.23",
     "ruff>=0.4",
     "respx>=0.21",
+    "httpx>=0.27",
+]
+api = [
+    "fastapi>=0.110",
+    "uvicorn[standard]>=0.27",
 ]
 
 [project.scripts]

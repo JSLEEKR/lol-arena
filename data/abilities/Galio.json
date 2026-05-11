@@ -1,0 +1,56 @@
+{
+  "champion_key": "Galio",
+  "abilities": {
+    "Q": {
+      "slot": "Q",
+      "name": "Winds of War",
+      "cooldown": [
+        11.0,
+        10.0,
+        9.0,
+        8.0,
+        7.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "W": {
+      "slot": "W",
+      "name": "Shield of Durand",
+      "cooldown": [
+        18.0,
+        17.0,
+        16.0,
+        15.0,
+        14.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "E": {
+      "slot": "E",
+      "name": "Justice Punch",
+      "cooldown": [
+        11.0,
+        10.0,
+        9.0,
+        8.0,
+        7.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "R": {
+      "slot": "R",
+      "name": "Hero's Entrance",
+      "cooldown": [
+        180.0,
+        160.0,
+        140.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    }
+  },
+  "verified": false
+}

@@ -1,0 +1,56 @@
+{
+  "champion_key": "Anivia",
+  "abilities": {
+    "Q": {
+      "slot": "Q",
+      "name": "Flash Frost",
+      "cooldown": [
+        11.0,
+        10.0,
+        9.0,
+        8.0,
+        7.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "W": {
+      "slot": "W",
+      "name": "Crystallize",
+      "cooldown": [
+        17.0,
+        17.0,
+        17.0,
+        17.0,
+        17.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "E": {
+      "slot": "E",
+      "name": "Frostbite",
+      "cooldown": [
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "R": {
+      "slot": "R",
+      "name": "Glacial Storm",
+      "cooldown": [
+        4.0,
+        3.0,
+        2.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    }
+  },
+  "verified": false
+}

@@ -1,0 +1,56 @@
+{
+  "champion_key": "Orianna",
+  "abilities": {
+    "Q": {
+      "slot": "Q",
+      "name": "Command: Attack",
+      "cooldown": [
+        7.0,
+        6.0,
+        5.0,
+        4.0,
+        3.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "W": {
+      "slot": "W",
+      "name": "Command: Dissonance",
+      "cooldown": [
+        7.0,
+        7.0,
+        7.0,
+        7.0,
+        7.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "E": {
+      "slot": "E",
+      "name": "Command: Protect",
+      "cooldown": [
+        9.0,
+        9.0,
+        9.0,
+        9.0,
+        9.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "R": {
+      "slot": "R",
+      "name": "Command: Shockwave",
+      "cooldown": [
+        110.0,
+        95.0,
+        80.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    }
+  },
+  "verified": false
+}

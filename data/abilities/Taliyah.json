@@ -1,0 +1,56 @@
+{
+  "champion_key": "Taliyah",
+  "abilities": {
+    "Q": {
+      "slot": "Q",
+      "name": "Threaded Volley",
+      "cooldown": [
+        7.0,
+        6.0,
+        5.0,
+        4.0,
+        3.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "W": {
+      "slot": "W",
+      "name": "Seismic Shove",
+      "cooldown": [
+        14.0,
+        12.5,
+        11.0,
+        9.5,
+        8.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "E": {
+      "slot": "E",
+      "name": "Unraveled Earth",
+      "cooldown": [
+        14.0,
+        14.0,
+        14.0,
+        14.0,
+        14.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "R": {
+      "slot": "R",
+      "name": "Weaver's Wall",
+      "cooldown": [
+        180.0,
+        150.0,
+        120.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    }
+  },
+  "verified": false
+}

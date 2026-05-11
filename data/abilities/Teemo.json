@@ -1,0 +1,56 @@
+{
+  "champion_key": "Teemo",
+  "abilities": {
+    "Q": {
+      "slot": "Q",
+      "name": "Blinding Dart",
+      "cooldown": [
+        7.0,
+        7.0,
+        7.0,
+        7.0,
+        7.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "W": {
+      "slot": "W",
+      "name": "Move Quick",
+      "cooldown": [
+        14.0,
+        14.0,
+        14.0,
+        14.0,
+        14.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "E": {
+      "slot": "E",
+      "name": "Toxic Shot",
+      "cooldown": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "R": {
+      "slot": "R",
+      "name": "Noxious Trap",
+      "cooldown": [
+        0.25,
+        0.25,
+        0.25
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    }
+  },
+  "verified": false
+}

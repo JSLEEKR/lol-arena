@@ -416,12 +416,14 @@ def dps_run(
     abilities = get_abilities(champ, mode_key=mode_obj.key.value)
     targets = list(DUMMIES.values()) if target == "all" else [DUMMIES[target.lower()]]
 
-    if abilities is None:
-        console.print(
-            f"[yellow]No ability coefficients yet for {champ}.[/yellow] "
-            f"Showing auto-attack DPS only. "
-            f"Hand-curated champions: {', '.join(ability_keys()) or '(none)'}"
-        )
+    if abilities is None or not abilities.has_any_damage_data():
+        if abilities is None:
+            console.print(f"[yellow]No ability data file for {champ}.[/yellow]")
+        else:
+            console.print(
+                f"[yellow]{champ} has skeleton (unverified) ability data — "
+                "no damage formulas yet.[/yellow] Showing auto-attack DPS only."
+            )
         for d in targets:
             r = auto_dps(stats, d, items=resolved)
             console.print(
@@ -429,6 +431,11 @@ def dps_run(
                 f"(auto {r.auto_damage:.0f} × AS {r.attack_speed:.2f})"
             )
         return
+
+    if not abilities.verified:
+        console.print(
+            f"[yellow]⚠ {champ} ability data is unverified — numbers are estimates.[/yellow]"
+        )
 
     summary = Table(title=f"{champ} @ lvl {lvl} [{mode_obj.display_name}] — items: {', '.join(i.name for i in resolved) or '(none)'}")
     summary.add_column("target")
@@ -450,13 +457,27 @@ def dps_run(
 
 
 @dps_app.command("list-champions")
-def dps_list() -> None:
-    """List champions with hand-curated ability data."""
-    keys = ability_keys()
-    if not keys:
-        console.print("[yellow]No ability data yet.[/yellow]")
-        return
-    console.print(f"Hand-curated champions ({len(keys)}): " + ", ".join(keys))
+def dps_list(
+    show_all: bool = typer.Option(False, "--all", help="Include unverified skeleton data"),
+) -> None:
+    """List champions with ability data, split by verified vs skeleton."""
+    from arena_sim.data.load_abilities import load_all
+    catalog = load_all()
+    verified = sorted(k for k, v in catalog.items() if v.verified)
+    skeleton = sorted(k for k, v in catalog.items() if not v.verified)
+    console.print(
+        f"[bold green]Verified[/bold green] ({len(verified)}): " + ", ".join(verified)
+    )
+    if show_all and skeleton:
+        console.print(
+            f"\n[bold yellow]Skeleton (auto-only)[/bold yellow] ({len(skeleton)}): "
+            + ", ".join(skeleton)
+        )
+    elif skeleton:
+        console.print(
+            f"\n[yellow]{len(skeleton)} more have auto-attack-only data.[/yellow] "
+            "Pass --all to list them."
+        )
 
 
 def _format_delta(d: float, *, pct: bool = False) -> str:

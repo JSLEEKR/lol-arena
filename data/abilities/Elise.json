@@ -1,0 +1,57 @@
+{
+  "champion_key": "Elise",
+  "abilities": {
+    "Q": {
+      "slot": "Q",
+      "name": "Neurotoxin / Venomous Bite",
+      "cooldown": [
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "W": {
+      "slot": "W",
+      "name": "Volatile Spiderling / Skittering Frenzy",
+      "cooldown": [
+        12.0,
+        12.0,
+        12.0,
+        12.0,
+        12.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "E": {
+      "slot": "E",
+      "name": "Cocoon / Rappel",
+      "cooldown": [
+        12.0,
+        11.5,
+        11.0,
+        10.5,
+        10.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "R": {
+      "slot": "R",
+      "name": "Spider Form",
+      "cooldown": [
+        3.0,
+        3.0,
+        3.0,
+        3.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    }
+  },
+  "verified": false
+}

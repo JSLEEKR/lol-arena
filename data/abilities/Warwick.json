@@ -1,0 +1,56 @@
+{
+  "champion_key": "Warwick",
+  "abilities": {
+    "Q": {
+      "slot": "Q",
+      "name": "Jaws of the Beast",
+      "cooldown": [
+        8.0,
+        7.5,
+        7.0,
+        6.5,
+        6.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "W": {
+      "slot": "W",
+      "name": "Blood Hunt",
+      "cooldown": [
+        80.0,
+        70.0,
+        60.0,
+        50.0,
+        40.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "E": {
+      "slot": "E",
+      "name": "Primal Howl",
+      "cooldown": [
+        15.0,
+        14.0,
+        13.0,
+        12.0,
+        11.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "R": {
+      "slot": "R",
+      "name": "Infinite Duress",
+      "cooldown": [
+        110.0,
+        90.0,
+        70.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    }
+  },
+  "verified": false
+}

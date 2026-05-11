@@ -1,0 +1,56 @@
+{
+  "champion_key": "Xayah",
+  "abilities": {
+    "Q": {
+      "slot": "Q",
+      "name": "Double Daggers",
+      "cooldown": [
+        10.0,
+        9.5,
+        9.0,
+        8.5,
+        8.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "W": {
+      "slot": "W",
+      "name": "Deadly Plumage",
+      "cooldown": [
+        18.0,
+        17.0,
+        16.0,
+        15.0,
+        14.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "E": {
+      "slot": "E",
+      "name": "Bladecaller",
+      "cooldown": [
+        12.0,
+        11.0,
+        10.0,
+        9.0,
+        8.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "R": {
+      "slot": "R",
+      "name": "Featherstorm",
+      "cooldown": [
+        140.0,
+        120.0,
+        100.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    }
+  },
+  "verified": false
+}

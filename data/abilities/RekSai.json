@@ -1,0 +1,56 @@
+{
+  "champion_key": "RekSai",
+  "abilities": {
+    "Q": {
+      "slot": "Q",
+      "name": "Queen's Wrath / Prey Seeker",
+      "cooldown": [
+        4.0,
+        3.5,
+        3.0,
+        2.5,
+        2.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "W": {
+      "slot": "W",
+      "name": "Burrow / Un-burrow",
+      "cooldown": [
+        4.0,
+        4.0,
+        4.0,
+        4.0,
+        4.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "E": {
+      "slot": "E",
+      "name": "Furious Bite / Tunnel",
+      "cooldown": [
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "R": {
+      "slot": "R",
+      "name": "Void Rush",
+      "cooldown": [
+        120.0,
+        100.0,
+        80.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    }
+  },
+  "verified": false
+}

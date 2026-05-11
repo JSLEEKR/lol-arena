@@ -1,0 +1,56 @@
+{
+  "champion_key": "Trundle",
+  "abilities": {
+    "Q": {
+      "slot": "Q",
+      "name": "Chomp",
+      "cooldown": [
+        3.5,
+        3.5,
+        3.5,
+        3.5,
+        3.5
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "W": {
+      "slot": "W",
+      "name": "Frozen Domain",
+      "cooldown": [
+        18.0,
+        17.0,
+        16.0,
+        15.0,
+        14.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "E": {
+      "slot": "E",
+      "name": "Pillar of Ice",
+      "cooldown": [
+        21.0,
+        19.5,
+        18.0,
+        16.5,
+        15.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "R": {
+      "slot": "R",
+      "name": "Subjugate",
+      "cooldown": [
+        120.0,
+        100.0,
+        80.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    }
+  },
+  "verified": false
+}

@@ -1,0 +1,56 @@
+{
+  "champion_key": "Velkoz",
+  "abilities": {
+    "Q": {
+      "slot": "Q",
+      "name": "Plasma Fission",
+      "cooldown": [
+        7.0,
+        7.0,
+        7.0,
+        7.0,
+        7.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "W": {
+      "slot": "W",
+      "name": "Void Rift",
+      "cooldown": [
+        1.5,
+        1.5,
+        1.5,
+        1.5,
+        1.5
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "E": {
+      "slot": "E",
+      "name": "Tectonic Disruption",
+      "cooldown": [
+        12.0,
+        11.5,
+        11.0,
+        10.5,
+        10.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "R": {
+      "slot": "R",
+      "name": "Life Form Disintegration Ray",
+      "cooldown": [
+        100.0,
+        90.0,
+        80.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    }
+  },
+  "verified": false
+}

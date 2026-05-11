@@ -4,66 +4,127 @@
     "Q": {
       "slot": "Q",
       "name": "Orb of Deception (out + return)",
-      "cooldown": [9, 8, 7, 6, 5],
+      "cooldown": [
+        9,
+        8,
+        7,
+        6,
+        5
+      ],
       "cast_time": 0.5,
       "repeat": 2,
       "hits": [
         {
           "name": "Magic pass",
           "damage_type": "magical",
-          "base": [40, 65, 90, 115, 140],
-          "ratios": {"ap": 0.33}
+          "base": [
+            40,
+            65,
+            90,
+            115,
+            140
+          ],
+          "ratios": {
+            "ap": 0.33
+          }
         },
         {
           "name": "True pass (return)",
           "damage_type": "true",
-          "base": [0, 0, 0, 0, 0],
-          "ratios": {"ap": 0.0}
+          "base": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "ratios": {
+            "ap": 0.0
+          }
         }
       ]
     },
     "W": {
       "slot": "W",
       "name": "Fox-Fire",
-      "cooldown": [9, 8, 7, 6, 5],
+      "cooldown": [
+        9,
+        8,
+        7,
+        6,
+        5
+      ],
       "cast_time": 0.25,
       "repeat": 3,
       "hits": [
         {
           "name": "Flame",
           "damage_type": "magical",
-          "base": [60, 85, 110, 135, 160],
-          "ratios": {"ap": 0.4}
+          "base": [
+            60,
+            85,
+            110,
+            135,
+            160
+          ],
+          "ratios": {
+            "ap": 0.4
+          }
         }
       ]
     },
     "E": {
       "slot": "E",
       "name": "Charm",
-      "cooldown": [14, 13, 12, 11, 10],
+      "cooldown": [
+        14,
+        13,
+        12,
+        11,
+        10
+      ],
       "cast_time": 0.25,
       "hits": [
         {
           "name": "Charm",
           "damage_type": "magical",
-          "base": [60, 90, 120, 150, 180],
-          "ratios": {"ap": 0.6}
+          "base": [
+            60,
+            90,
+            120,
+            150,
+            180
+          ],
+          "ratios": {
+            "ap": 0.6
+          }
         }
       ]
     },
     "R": {
       "slot": "R",
       "name": "Spirit Rush (1 dash)",
-      "cooldown": [110, 90, 70],
+      "cooldown": [
+        110,
+        90,
+        70
+      ],
       "cast_time": 0.5,
       "hits": [
         {
           "name": "Burst",
           "damage_type": "magical",
-          "base": [60, 90, 120],
-          "ratios": {"ap": 0.35}
+          "base": [
+            60,
+            90,
+            120
+          ],
+          "ratios": {
+            "ap": 0.35
+          }
         }
       ]
     }
-  }
+  },
+  "verified": true
 }

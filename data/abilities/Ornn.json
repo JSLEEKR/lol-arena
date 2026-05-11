@@ -1,0 +1,56 @@
+{
+  "champion_key": "Ornn",
+  "abilities": {
+    "Q": {
+      "slot": "Q",
+      "name": "Volcanic Rupture",
+      "cooldown": [
+        9.0,
+        8.5,
+        8.0,
+        7.5,
+        7.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "W": {
+      "slot": "W",
+      "name": "Bellows Breath",
+      "cooldown": [
+        12.0,
+        11.5,
+        11.0,
+        10.5,
+        10.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "E": {
+      "slot": "E",
+      "name": "Searing Charge",
+      "cooldown": [
+        14.0,
+        13.5,
+        13.0,
+        12.5,
+        12.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "R": {
+      "slot": "R",
+      "name": "Call of the Forge God",
+      "cooldown": [
+        140.0,
+        120.0,
+        100.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    }
+  },
+  "verified": false
+}

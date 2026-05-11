@@ -1,0 +1,56 @@
+{
+  "champion_key": "Leblanc",
+  "abilities": {
+    "Q": {
+      "slot": "Q",
+      "name": "Sigil of Malice",
+      "cooldown": [
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "W": {
+      "slot": "W",
+      "name": "Distortion",
+      "cooldown": [
+        15.0,
+        13.75,
+        12.5,
+        11.25,
+        10.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "E": {
+      "slot": "E",
+      "name": "Ethereal Chains",
+      "cooldown": [
+        14.0,
+        13.25,
+        12.5,
+        11.75,
+        11.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "R": {
+      "slot": "R",
+      "name": "Mimic",
+      "cooldown": [
+        45.0,
+        35.0,
+        25.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    }
+  },
+  "verified": false
+}

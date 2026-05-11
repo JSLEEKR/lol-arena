@@ -1,0 +1,56 @@
+{
+  "champion_key": "Cassiopeia",
+  "abilities": {
+    "Q": {
+      "slot": "Q",
+      "name": "Noxious Blast",
+      "cooldown": [
+        3.5,
+        3.5,
+        3.5,
+        3.5,
+        3.5
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "W": {
+      "slot": "W",
+      "name": "Miasma",
+      "cooldown": [
+        24.0,
+        22.0,
+        20.0,
+        18.0,
+        16.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "E": {
+      "slot": "E",
+      "name": "Twin Fang",
+      "cooldown": [
+        0.75,
+        0.75,
+        0.75,
+        0.75,
+        0.75
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "R": {
+      "slot": "R",
+      "name": "Petrifying Gaze",
+      "cooldown": [
+        120.0,
+        100.0,
+        80.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    }
+  },
+  "verified": false
+}

@@ -4,14 +4,28 @@
     "Q": {
       "slot": "Q",
       "name": "Crushing Blow (empowered AA)",
-      "cooldown": [9, 8, 7, 6, 5],
+      "cooldown": [
+        9,
+        8,
+        7,
+        6,
+        5
+      ],
       "cast_time": 0.25,
       "hits": [
         {
           "name": "Smash",
           "damage_type": "physical",
-          "base": [10, 35, 60, 85, 110],
-          "ratios": {"total_ad": 1.1},
+          "base": [
+            10,
+            35,
+            60,
+            85,
+            110
+          ],
+          "ratios": {
+            "total_ad": 1.1
+          },
           "can_crit": true
         }
       ]
@@ -19,31 +33,56 @@
     "E": {
       "slot": "E",
       "name": "Nimbus Strike",
-      "cooldown": [9, 8.5, 8, 7.5, 7],
+      "cooldown": [
+        9,
+        8.5,
+        8,
+        7.5,
+        7
+      ],
       "cast_time": 0.25,
       "hits": [
         {
           "name": "Dash",
           "damage_type": "magical",
-          "base": [80, 110, 140, 170, 200],
-          "ratios": {"bonus_ad": 0.8}
+          "base": [
+            80,
+            110,
+            140,
+            170,
+            200
+          ],
+          "ratios": {
+            "bonus_ad": 0.8
+          }
         }
       ]
     },
     "R": {
       "slot": "R",
       "name": "Cyclone (per second)",
-      "cooldown": [120, 100, 80],
+      "cooldown": [
+        120,
+        100,
+        80
+      ],
       "cast_time": 4.0,
       "repeat": 4,
       "hits": [
         {
           "name": "Tick",
           "damage_type": "physical",
-          "base": [50, 75, 100],
-          "ratios": {"bonus_ad": 0.6}
+          "base": [
+            50,
+            75,
+            100
+          ],
+          "ratios": {
+            "bonus_ad": 0.6
+          }
         }
       ]
     }
-  }
+  },
+  "verified": true
 }

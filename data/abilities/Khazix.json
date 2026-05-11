@@ -4,37 +4,70 @@
     "Q": {
       "slot": "Q",
       "name": "Taste Their Fear (isolated)",
-      "cooldown": [5, 4.5, 4, 3.5, 3],
+      "cooldown": [
+        5,
+        4.5,
+        4,
+        3.5,
+        3
+      ],
       "cast_time": 0.25,
       "hits": [
         {
           "name": "Slash (isolated 1.7x)",
           "damage_type": "physical",
-          "base": [120, 168, 217, 265, 314],
-          "ratios": {"bonus_ad": 1.785}
+          "base": [
+            120,
+            168,
+            217,
+            265,
+            314
+          ],
+          "ratios": {
+            "bonus_ad": 1.785
+          }
         }
       ]
     },
     "W": {
       "slot": "W",
       "name": "Void Spike",
-      "cooldown": [9, 8, 7, 6, 5],
+      "cooldown": [
+        9,
+        8,
+        7,
+        6,
+        5
+      ],
       "cast_time": 0.4,
       "hits": [
         {
           "name": "Spike",
           "damage_type": "physical",
-          "base": [80, 110, 140, 170, 200],
-          "ratios": {"bonus_ad": 1.0}
+          "base": [
+            80,
+            110,
+            140,
+            170,
+            200
+          ],
+          "ratios": {
+            "bonus_ad": 1.0
+          }
         }
       ]
     },
     "R": {
       "slot": "R",
       "name": "Void Assault (no direct dmg, stealth + Q reset)",
-      "cooldown": [100, 90, 80],
+      "cooldown": [
+        100,
+        90,
+        80
+      ],
       "cast_time": 0,
       "hits": []
     }
-  }
+  },
+  "verified": true
 }

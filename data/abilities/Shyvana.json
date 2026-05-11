@@ -1,0 +1,56 @@
+{
+  "champion_key": "Shyvana",
+  "abilities": {
+    "Q": {
+      "slot": "Q",
+      "name": "Emberstrike",
+      "cooldown": [
+        10.0,
+        9.0,
+        8.0,
+        7.0,
+        6.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "W": {
+      "slot": "W",
+      "name": "Inferno Aegis",
+      "cooldown": [
+        13.0,
+        12.0,
+        11.0,
+        10.0,
+        9.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "E": {
+      "slot": "E",
+      "name": "Molten Burst",
+      "cooldown": [
+        12.0,
+        11.0,
+        10.0,
+        9.0,
+        8.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "R": {
+      "slot": "R",
+      "name": "Dragon's Descent",
+      "cooldown": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    }
+  },
+  "verified": false
+}

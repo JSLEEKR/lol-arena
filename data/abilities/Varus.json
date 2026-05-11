@@ -1,0 +1,56 @@
+{
+  "champion_key": "Varus",
+  "abilities": {
+    "Q": {
+      "slot": "Q",
+      "name": "Piercing Arrow",
+      "cooldown": [
+        16.0,
+        15.0,
+        14.0,
+        13.0,
+        12.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "W": {
+      "slot": "W",
+      "name": "Blighted Quiver",
+      "cooldown": [
+        40.0,
+        40.0,
+        40.0,
+        40.0,
+        40.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "E": {
+      "slot": "E",
+      "name": "Hail of Arrows",
+      "cooldown": [
+        18.0,
+        16.0,
+        14.0,
+        12.0,
+        10.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "R": {
+      "slot": "R",
+      "name": "Chain of Corruption",
+      "cooldown": [
+        100.0,
+        80.0,
+        60.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    }
+  },
+  "verified": false
+}

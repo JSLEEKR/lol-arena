@@ -1,0 +1,56 @@
+{
+  "champion_key": "Senna",
+  "abilities": {
+    "Q": {
+      "slot": "Q",
+      "name": "Piercing Darkness",
+      "cooldown": [
+        15.0,
+        15.0,
+        15.0,
+        15.0,
+        15.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "W": {
+      "slot": "W",
+      "name": "Last Embrace",
+      "cooldown": [
+        11.0,
+        11.0,
+        11.0,
+        11.0,
+        11.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "E": {
+      "slot": "E",
+      "name": "Curse of the Black Mist",
+      "cooldown": [
+        26.0,
+        24.5,
+        23.0,
+        21.5,
+        20.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "R": {
+      "slot": "R",
+      "name": "Dawning Shadow",
+      "cooldown": [
+        140.0,
+        120.0,
+        100.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    }
+  },
+  "verified": false
+}

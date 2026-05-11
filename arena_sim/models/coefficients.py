@@ -66,3 +66,12 @@ class ChampionAbilities(BaseModel):
 
     champion_key: str
     abilities: dict[str, AbilityCoefficients] = Field(default_factory=dict)
+    # When True, damage formulas have been hand-verified; otherwise the file is
+    # a skeleton (cooldowns / names present, hits empty or partial).
+    verified: bool = False
+
+    def has_any_damage_data(self) -> bool:
+        return any(
+            ab.hits and any(h.base for h in ab.hits if h.base)
+            for ab in self.abilities.values()
+        )

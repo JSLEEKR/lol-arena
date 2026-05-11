@@ -1,0 +1,56 @@
+{
+  "champion_key": "Renata",
+  "abilities": {
+    "Q": {
+      "slot": "Q",
+      "name": "Handshake",
+      "cooldown": [
+        16.0,
+        16.0,
+        16.0,
+        16.0,
+        16.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "W": {
+      "slot": "W",
+      "name": "Bailout",
+      "cooldown": [
+        28.0,
+        27.0,
+        26.0,
+        25.0,
+        24.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "E": {
+      "slot": "E",
+      "name": "Loyalty Program",
+      "cooldown": [
+        14.0,
+        13.0,
+        12.0,
+        11.0,
+        10.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "R": {
+      "slot": "R",
+      "name": "Hostile Takeover",
+      "cooldown": [
+        150.0,
+        130.0,
+        110.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    }
+  },
+  "verified": false
+}

@@ -1,0 +1,56 @@
+{
+  "champion_key": "TwistedFate",
+  "abilities": {
+    "Q": {
+      "slot": "Q",
+      "name": "Wild Cards",
+      "cooldown": [
+        6.0,
+        5.75,
+        5.5,
+        5.25,
+        5.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "W": {
+      "slot": "W",
+      "name": "Pick a Card",
+      "cooldown": [
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "E": {
+      "slot": "E",
+      "name": "Stacked Deck",
+      "cooldown": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "R": {
+      "slot": "R",
+      "name": "Destiny",
+      "cooldown": [
+        170.0,
+        140.0,
+        110.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    }
+  },
+  "verified": false
+}

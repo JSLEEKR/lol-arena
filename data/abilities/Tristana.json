@@ -4,36 +4,71 @@
     "E": {
       "slot": "E",
       "name": "Explosive Charge (max stacks)",
-      "cooldown": [16, 14, 12, 10, 8],
+      "cooldown": [
+        16,
+        14,
+        12,
+        10,
+        8
+      ],
       "cast_time": 0.25,
       "hits": [
         {
           "name": "Base detonation",
           "damage_type": "physical",
-          "base": [60, 90, 120, 150, 180],
-          "ratios": {"bonus_ad": 0.5, "ap": 0.5}
+          "base": [
+            60,
+            90,
+            120,
+            150,
+            180
+          ],
+          "ratios": {
+            "bonus_ad": 0.5,
+            "ap": 0.5
+          }
         },
         {
           "name": "Max stacks",
           "damage_type": "physical",
-          "base": [60, 90, 120, 150, 180],
-          "ratios": {"bonus_ad": 0.5, "ap": 0.5}
+          "base": [
+            60,
+            90,
+            120,
+            150,
+            180
+          ],
+          "ratios": {
+            "bonus_ad": 0.5,
+            "ap": 0.5
+          }
         }
       ]
     },
     "R": {
       "slot": "R",
       "name": "Buster Shot",
-      "cooldown": [100, 80, 60],
+      "cooldown": [
+        100,
+        80,
+        60
+      ],
       "cast_time": 0.4,
       "hits": [
         {
           "name": "Cannonball",
           "damage_type": "magical",
-          "base": [300, 400, 500],
-          "ratios": {"ap": 1.0}
+          "base": [
+            300,
+            400,
+            500
+          ],
+          "ratios": {
+            "ap": 1.0
+          }
         }
       ]
     }
-  }
+  },
+  "verified": true
 }

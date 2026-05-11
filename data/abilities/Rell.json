@@ -1,0 +1,56 @@
+{
+  "champion_key": "Rell",
+  "abilities": {
+    "Q": {
+      "slot": "Q",
+      "name": "Shattering Strike",
+      "cooldown": [
+        11.0,
+        10.5,
+        10.0,
+        9.5,
+        9.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "W": {
+      "slot": "W",
+      "name": "Ferromancy: Crash Down",
+      "cooldown": [
+        10.0,
+        10.0,
+        10.0,
+        10.0,
+        10.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "E": {
+      "slot": "E",
+      "name": "Full Tilt",
+      "cooldown": [
+        14.0,
+        13.0,
+        12.0,
+        11.0,
+        10.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "R": {
+      "slot": "R",
+      "name": "Magnet Storm",
+      "cooldown": [
+        120.0,
+        100.0,
+        80.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    }
+  },
+  "verified": false
+}

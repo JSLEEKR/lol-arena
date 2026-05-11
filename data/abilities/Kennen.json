@@ -1,0 +1,56 @@
+{
+  "champion_key": "Kennen",
+  "abilities": {
+    "Q": {
+      "slot": "Q",
+      "name": "Thundering Shuriken",
+      "cooldown": [
+        7.0,
+        6.25,
+        5.5,
+        4.75,
+        4.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "W": {
+      "slot": "W",
+      "name": "Electrical Surge",
+      "cooldown": [
+        13.0,
+        11.25,
+        9.5,
+        7.75,
+        6.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "E": {
+      "slot": "E",
+      "name": "Lightning Rush",
+      "cooldown": [
+        10.0,
+        9.0,
+        8.0,
+        7.0,
+        6.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "R": {
+      "slot": "R",
+      "name": "Slicing Maelstrom",
+      "cooldown": [
+        120.0,
+        120.0,
+        120.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    }
+  },
+  "verified": false
+}

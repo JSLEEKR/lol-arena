@@ -1,0 +1,56 @@
+{
+  "champion_key": "Akshan",
+  "abilities": {
+    "Q": {
+      "slot": "Q",
+      "name": "Avengerang",
+      "cooldown": [
+        9.0,
+        8.0,
+        7.0,
+        6.0,
+        5.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "W": {
+      "slot": "W",
+      "name": "Going Rogue",
+      "cooldown": [
+        18.0,
+        14.0,
+        10.0,
+        6.0,
+        2.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "E": {
+      "slot": "E",
+      "name": "Heroic Swing",
+      "cooldown": [
+        18.0,
+        16.5,
+        15.0,
+        13.5,
+        12.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "R": {
+      "slot": "R",
+      "name": "Comeuppance",
+      "cooldown": [
+        100.0,
+        85.0,
+        70.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    }
+  },
+  "verified": false
+}

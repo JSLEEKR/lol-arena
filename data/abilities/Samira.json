@@ -4,14 +4,28 @@
     "Q": {
       "slot": "Q",
       "name": "Flair (gunshot)",
-      "cooldown": [8, 7, 6, 5, 4],
+      "cooldown": [
+        8,
+        7,
+        6,
+        5,
+        4
+      ],
       "cast_time": 0.2,
       "hits": [
         {
           "name": "Shot",
           "damage_type": "physical",
-          "base": [0, 20, 40, 60, 80],
-          "ratios": {"total_ad": 1.0},
+          "base": [
+            0,
+            20,
+            40,
+            60,
+            80
+          ],
+          "ratios": {
+            "total_ad": 1.0
+          },
           "can_crit": true
         }
       ]
@@ -19,33 +33,58 @@
     "W": {
       "slot": "W",
       "name": "Blade Whirl",
-      "cooldown": [22, 19.5, 17, 14.5, 12],
+      "cooldown": [
+        22,
+        19.5,
+        17,
+        14.5,
+        12
+      ],
       "cast_time": 1.5,
       "repeat": 2,
       "hits": [
         {
           "name": "Slash",
           "damage_type": "physical",
-          "base": [40, 65, 90, 115, 140],
-          "ratios": {"bonus_ad": 0.5}
+          "base": [
+            40,
+            65,
+            90,
+            115,
+            140
+          ],
+          "ratios": {
+            "bonus_ad": 0.5
+          }
         }
       ]
     },
     "R": {
       "slot": "R",
       "name": "Inferno Trigger",
-      "cooldown": [120, 100, 80],
+      "cooldown": [
+        120,
+        100,
+        80
+      ],
       "cast_time": 2.0,
       "repeat": 10,
       "hits": [
         {
           "name": "Shot",
           "damage_type": "physical",
-          "base": [10, 20, 30],
-          "ratios": {"total_ad": 0.6},
+          "base": [
+            10,
+            20,
+            30
+          ],
+          "ratios": {
+            "total_ad": 0.6
+          },
           "can_crit": true
         }
       ]
     }
-  }
+  },
+  "verified": true
 }

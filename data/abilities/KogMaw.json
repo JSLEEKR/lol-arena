@@ -1,0 +1,56 @@
+{
+  "champion_key": "KogMaw",
+  "abilities": {
+    "Q": {
+      "slot": "Q",
+      "name": "Caustic Spittle",
+      "cooldown": [
+        7.0,
+        7.0,
+        7.0,
+        7.0,
+        7.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "W": {
+      "slot": "W",
+      "name": "Bio-Arcane Barrage",
+      "cooldown": [
+        17.0,
+        17.0,
+        17.0,
+        17.0,
+        17.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "E": {
+      "slot": "E",
+      "name": "Void Ooze",
+      "cooldown": [
+        12.0,
+        12.0,
+        12.0,
+        12.0,
+        12.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "R": {
+      "slot": "R",
+      "name": "Living Artillery",
+      "cooldown": [
+        2.0,
+        1.5,
+        1.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    }
+  },
+  "verified": false
+}

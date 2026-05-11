@@ -4,37 +4,70 @@
     "Q": {
       "slot": "Q",
       "name": "The Darkin Blade (1st cast, sweet spot)",
-      "cooldown": [14, 12, 10, 8, 6],
+      "cooldown": [
+        14,
+        12,
+        10,
+        8,
+        6
+      ],
       "cast_time": 0.6,
       "hits": [
         {
           "name": "Sword",
           "damage_type": "physical",
-          "base": [10, 35, 60, 85, 110],
-          "ratios": {"total_ad": 0.6}
+          "base": [
+            10,
+            35,
+            60,
+            85,
+            110
+          ],
+          "ratios": {
+            "total_ad": 0.6
+          }
         }
       ]
     },
     "W": {
       "slot": "W",
       "name": "Infernal Chains",
-      "cooldown": [20, 17.5, 15, 12.5, 10],
+      "cooldown": [
+        20,
+        17.5,
+        15,
+        12.5,
+        10
+      ],
       "cast_time": 0.4,
       "hits": [
         {
           "name": "Chain",
           "damage_type": "physical",
-          "base": [30, 60, 90, 120, 150],
-          "ratios": {"bonus_ad": 0.4}
+          "base": [
+            30,
+            60,
+            90,
+            120,
+            150
+          ],
+          "ratios": {
+            "bonus_ad": 0.4
+          }
         }
       ]
     },
     "R": {
       "slot": "R",
       "name": "World Ender (passive AD/healing buff, no direct dmg)",
-      "cooldown": [120, 100, 80],
+      "cooldown": [
+        120,
+        100,
+        80
+      ],
       "cast_time": 0.0,
       "hits": []
     }
-  }
+  },
+  "verified": true
 }

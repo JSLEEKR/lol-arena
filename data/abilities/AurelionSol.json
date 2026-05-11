@@ -1,0 +1,56 @@
+{
+  "champion_key": "AurelionSol",
+  "abilities": {
+    "Q": {
+      "slot": "Q",
+      "name": "Breath of Light",
+      "cooldown": [
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "W": {
+      "slot": "W",
+      "name": "Astral Flight",
+      "cooldown": [
+        22.0,
+        20.5,
+        19.0,
+        17.5,
+        16.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "E": {
+      "slot": "E",
+      "name": "Singularity",
+      "cooldown": [
+        12.0,
+        12.0,
+        12.0,
+        12.0,
+        12.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "R": {
+      "slot": "R",
+      "name": "Falling Star / The Skies Descend",
+      "cooldown": [
+        120.0,
+        110.0,
+        100.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    }
+  },
+  "verified": false
+}

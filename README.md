@@ -3,8 +3,12 @@
 A LoL theorycrafting toolkit covering **Summoner's Rift, Arena (Cherry), and URF** in one model.
 
 Pulls every champion, item, augment, and rune from Riot Data Dragon +
-CommunityDragon, then computes build stats and DPS so you can compare champions,
-builds, and modes — without grinding 50 games.
+CommunityDragon, then computes build stats and DPS — so you can compare
+champions, builds, and modes without grinding 50 games.
+
+[![tests](https://img.shields.io/badge/tests-74_passing-brightgreen)](#)
+[![python](https://img.shields.io/badge/python-3.11+-blue)](#)
+[![license](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 
 > Scope: pre-simulation only — stat aggregation + DPS calculation.
 > No combat engine, no fight resolution.
@@ -21,6 +25,9 @@ builds, and modes — without grinding 50 games.
 arena modes   # show the table above
 ```
 
+Modes are a single registry entry — adding a fourth (ARAM, Nexus Blitz, Swarm)
+is one dataclass.
+
 ## Quick demo
 
 ```bash
@@ -35,45 +42,66 @@ $ arena dps run --champ Garen --lvl 11 --items "Eclipse,Black Cleaver" --mode ar
 $ arena dps run --champ Garen --lvl 11 --items "Eclipse,Black Cleaver" --mode urf
  Garen @ lvl 11 [Ultra Rapid Fire] — items: Eclipse, Black Cleaver
 ┌─────────┬───────┬───────────────┬──────────┬──────┐
-│ Bruiser │   792 │           110 │       92 │ 0.83 │   ← +33% DPS from shorter cooldowns
+│ Bruiser │   792 │           110 │       92 │ 0.83 │   ← +33% DPS from URF cooldowns
 └─────────┴───────┴───────────────┴──────────┴──────┘
 ```
 
-Compare two builds side-by-side, with deltas:
+Side-by-side build comparison with deltas:
 
 ```bash
 $ arena dps compare \
     --a-champ Vayne --a-lvl 14 --a-items "Infinity Edge,Phantom Dancer" \
     --b-champ Vayne --b-lvl 14 --b-items "Blade of the Ruined King,Trinity Force" \
     --mode arena
- Build Stats — Vayne L14 vs Vayne L14
-┌──────────────┬───────────┬───────────┬──────────┐
-│ HP           │    2154.4 │    2554.0 │ ▲ +399.6 │
-│ AD           │     135.0 │     136.0 │   ▲ +1.0 │
-│ Crit         │       50% │        0% │   ▼ -50% │
-│ AS           │     1.319 │     1.184 │   ▼ -0.1 │
-└──────────────┴───────────┴───────────┴──────────┘
  Sustained DPS
 ┌─────────┬───────────┬───────────┬──────────┬────────┐
 │ Tank    │       359 │       654 │ ▲ +294.6 │ ▲ +82% │   ← BORK+Trinity wins vs tanks
 └─────────┴───────────┴───────────┴──────────┴────────┘
 ```
 
-## Status
+## HTTP API
 
-| Component | Status |
+```bash
+pip install -e ".[api]"
+uvicorn arena_sim.api.server:app --reload
+```
+
+```bash
+$ curl -X POST localhost:8000/dps -H 'Content-Type: application/json' \
+       -d '{"champion":"Garen","level":11,"items":["Eclipse","Black Cleaver"],"mode":"urf","target":"bruiser"}'
+{
+  "champion": "Garen", "level": 11, "mode": "urf",
+  "rows": [{"target":"Bruiser","dps":110.2,"burst":791.6,"data_quality":"verified"}]
+}
+```
+
+Endpoints:
+- `GET  /modes` — mode table
+- `GET  /champions[?verified_only=true]`
+- `GET  /items[?search=...]`
+- `GET  /augments[?search=...]`
+- `POST /build/inspect` — final stats
+- `POST /dps` — auto + ability DPS vs target dummies
+- `POST /dps/compare` — A vs B side-by-side
+
+## Status (v1.0.0)
+
+| Component | State |
 |---|---|
 | Data scrapers (champions / items / augments / runes) | ✅ |
 | Multi-mode architecture (Rift / Arena / URF) | ✅ |
 | Build stat aggregation (level + items + runes + augments) | ✅ |
 | Auto-attack DPS vs 4 target dummies | ✅ |
-| Ability damage calculator + sustained DPS | ✅ (28 champions hand-curated) |
-| Item passives: BORK / Trinity / Black Cleaver / Wit's End / Nashor's etc. | ✅ |
-| Augment stat effects (auto-extracted from dataValues + templates) | ✅ |
-| Lethality / armor pen / crit math | ✅ |
-| Ability data for remaining 144 champions | 🚧 |
+| Ability damage calculator + sustained DPS | ✅ |
+| Item passives: 20+ items (BORK, Trinity, Black Cleaver, Wit's End, Nashor's, Statikk, Stormrazor, RFC, Sheen, Sundered Sky, Spear of Shojin, Voltaic, Lord Dominik's, Liandry's, Shadowflame, …) | ✅ |
+| Augment stat effects (auto-extracted from `dataValues` + templates) | ✅ |
+| Lethality / armor pen / crit math / magic pen | ✅ |
+| FastAPI HTTP server | ✅ |
+| All 172 champions loadable | ✅ |
+| Ability damage formulas: **28 verified, 144 skeleton** | 🚧 |
 | Conditional augments (Apex Inventor, on-hit triggers) | 🚧 |
-| Web UI | — |
+| Web UI (React/Next.js, hosted) | — |
+| Bin extractor (auto-fill skeletons from `.bin` data) | — |
 
 ## Install
 
@@ -88,13 +116,14 @@ pip install -e .
 # One-time data scrape (~30 seconds, cached after)
 arena scrape all
 arena info        # patch + counts
-arena modes       # available game modes
+arena modes       # available modes
 ```
 
 ## CLI reference
 
 ```bash
-arena scrape all                       # DDragon + CommunityDragon, idempotent + cached
+arena --version | -V
+arena scrape all                       # idempotent, cached
 arena scrape champions | items | augments | runes
 arena info                             # patch version, data counts, curated coverage
 arena modes                            # game-mode table
@@ -106,7 +135,7 @@ arena dps run     --champ <name> --lvl <1-18> [--items "..."] [--augments "..."]
 arena dps compare --a-champ X --a-items "..." [--a-augments "..."] --a-lvl 11 \
                   --b-champ Y --b-items "..." [--b-augments "..."] --b-lvl 11 \
                   [--mode arena|rift|urf]
-arena dps list-champions               # champs with hand-curated ability data
+arena dps list-champions [--all]       # verified vs skeleton split
 ```
 
 Item, augment, and champion names support fuzzy substring matching:
@@ -123,6 +152,22 @@ DPS is computed against four reference targets, calibrated to mid-game builds:
 | Bruiser | 3200 | 110 | 80 | Fighter with 1.5 defensive items |
 | Tank | 4500 | 200 | 150 | Full tank build |
 
+## Data quality
+
+DDragon strips Riot's actual spell coefficients for modern champions
+(descriptions still have `{{ damage }}` placeholders), so ability damage data
+is **hand-curated**. v1.0 ships with:
+
+- **28 verified champions** (popular Arena/Rift picks). DPS numbers reflect
+  real game data.
+- **144 skeleton champions**. Ability names + cooldowns + cast ranges are
+  pulled from DDragon, but damage formulas are empty. Auto-attack DPS is
+  accurate; ability DPS is reported as 0 with a clear warning.
+
+Filling in skeletons is mechanical work — copy a similar champion's JSON,
+look up the wiki, verify against in-game tooltips. See
+[`data/abilities/Garen.json`](./data/abilities/Garen.json) for the schema.
+
 ## Architecture
 
 ```
@@ -134,41 +179,52 @@ arena_sim/
 ├── stats/         compose(champ, level, items, runes, augments, mode) → ComputedStats
 ├── dps/           damage math · auto-attack DPS · ability rotation · item passives
 │                  · build comparison · target dummies
+├── api/           FastAPI HTTP wrapper
 └── cli.py         typer entry point: scrape, info, modes, list, build, dps
 
 data/
 ├── processed/     Scraped champion/item/augment/rune JSON (gitignored)
-└── abilities/     Hand-curated ability coefficient JSON, one file per champion
+└── abilities/     Ability coefficient JSON, one file per champion
+   └── urf/        Optional URF-specific overrides (e.g. Yasuo.json)
+   └── arena/      Optional Arena-specific overrides
 ```
 
 ### Adding a new mode
 
 ```python
 # arena_sim/modes/mode.py
-NEXUS_BLITZ = ModeModifiers(
-    key=GameModeKey.NEXUS_BLITZ,
-    display_name="Nexus Blitz",
+ARAM = ModeModifiers(
+    key=GameModeKey.ARAM,
+    display_name="Howling Abyss",
+    hp_multiplier=1.05,
     cooldown_multiplier=0.85,
-    ad_multiplier=1.1,
-    description="Faster game with stat boosts.",
+    description="ARAM-specific stat boosts.",
 )
-MODE_REGISTRY[GameModeKey.NEXUS_BLITZ] = NEXUS_BLITZ
+MODE_REGISTRY[GameModeKey.ARAM] = ARAM
 ```
 
-That's the entire addition — `compose()` and the DPS pipeline pick it up.
+That's the full integration — compose() and the DPS pipeline pick it up
+automatically. Per-mode ability overrides go in `data/abilities/<mode>/`.
+
+### Adding a champion's ability data
+
+```bash
+# Edit data/abilities/<Champion>.json (see data/abilities/Garen.json for the schema)
+# Flip "verified": false → true when damage formulas are checked
+```
 
 ### Data sources
 
 - **[Data Dragon](https://developer.riotgames.com/docs/lol)** — Riot canonical patch data: champions, items, runes.
-- **[CommunityDragon](https://www.communitydragon.org/)** — Arena augments (incl. `dataValues` for stat resolution), `.bin` extracts (future).
-- **Hand-curated `data/abilities/<Champion>.json`** — ability damage coefficients, since DDragon strips them for modern champions.
+- **[CommunityDragon](https://www.communitydragon.org/)** — Arena augments (with `dataValues` for stat resolution), `.bin` extracts (future).
+- **Hand-curated `data/abilities/<Champion>.json`** — ability damage coefficients.
 
 ### How DPS is computed
 
-1. **Compose stats**: `ComputedStats = champion.at_level(N) + Σ items.stats + Σ runes.stats + Σ augments.stat_effects`, with mode modifiers applied to base stats and AS/crit caps applied last.
-2. **Auto-attack DPS**: `expected_auto_damage × attack_speed`; on-hit (BORK, Wit's End, Kraken) is added per-AA; armor shred (Black Cleaver) reduces effective armor.
+1. **Compose stats**: `ComputedStats = champion.at_level(N) + Σ items.stats + Σ runes.stats + Σ augments.stat_effects`, with mode modifiers on base stats and AS / crit caps applied last.
+2. **Auto-attack DPS**: `expected_auto_damage × attack_speed`; on-hit (BORK, Wit's End, Kraken, …) per AA; armor shred (Black Cleaver) reduces effective armor.
 3. **Ability rotation**: cast each ability once (heuristic skill order for rank), sum hits, add Sheen procs per cast, then fill the longest mode-adjusted cooldown with autos. Sustained DPS = `(burst + autos_in_window) / window_seconds`.
-4. **Mitigation**: Riot's `100/(100+armor)` formula; percent pen applied before flat pen / lethality. Negative resists handled (amplification formula).
+4. **Mitigation**: Riot's `100 / (100 + armor)` formula; percent pen applied before flat pen / lethality. Negative resists handled (amplification formula).
 
 ## Contributing
 
@@ -176,12 +232,10 @@ That's the entire addition — `compose()` and the DPS pipeline pick it up.
 pip install -e ".[dev]"
 ruff check arena_sim tests
 pytest -q
-```
 
-To add a new champion's ability data, drop a JSON file in `data/abilities/`
-following the schema of [`Garen.json`](./data/abilities/Garen.json). The loader
-keys by `champion_key` inside the JSON, matching `Champion.key` from DDragon
-(note: `MonkeyKing` = Wukong, `Khazix` = Kha'Zix, etc.).
+# Add a champion: copy data/abilities/Garen.json, fill in damage formulas,
+# verify against in-game tooltips, flip verified: true.
+```
 
 ## License
 

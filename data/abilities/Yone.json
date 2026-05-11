@@ -4,14 +4,28 @@
     "Q": {
       "slot": "Q",
       "name": "Mortal Steel (stacked Q3)",
-      "cooldown": [4, 4, 4, 4, 4],
+      "cooldown": [
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
       "cast_time": 0.3,
       "hits": [
         {
           "name": "Tornado",
           "damage_type": "physical",
-          "base": [20, 45, 70, 95, 120],
-          "ratios": {"total_ad": 1.0},
+          "base": [
+            20,
+            45,
+            70,
+            95,
+            120
+          ],
+          "ratios": {
+            "total_ad": 1.0
+          },
           "can_crit": true
         }
       ]
@@ -19,24 +33,41 @@
     "E": {
       "slot": "E",
       "name": "Soul Unbound (on return, deals % of accumulated)",
-      "cooldown": [22, 19, 16, 13, 10],
+      "cooldown": [
+        22,
+        19,
+        16,
+        13,
+        10
+      ],
       "cast_time": 0.25,
       "hits": []
     },
     "R": {
       "slot": "R",
       "name": "Fate Sealed",
-      "cooldown": [120, 100, 80],
+      "cooldown": [
+        120,
+        100,
+        80
+      ],
       "cast_time": 0.5,
       "hits": [
         {
           "name": "Impact",
           "damage_type": "physical",
-          "base": [200, 400, 600],
-          "ratios": {"bonus_ad": 1.0},
+          "base": [
+            200,
+            400,
+            600
+          ],
+          "ratios": {
+            "bonus_ad": 1.0
+          },
           "can_crit": true
         }
       ]
     }
-  }
+  },
+  "verified": true
 }

@@ -1,0 +1,56 @@
+{
+  "champion_key": "Amumu",
+  "abilities": {
+    "Q": {
+      "slot": "Q",
+      "name": "Bandage Toss",
+      "cooldown": [
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "W": {
+      "slot": "W",
+      "name": "Despair",
+      "cooldown": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "E": {
+      "slot": "E",
+      "name": "Tantrum",
+      "cooldown": [
+        9.0,
+        8.0,
+        7.0,
+        6.0,
+        5.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "R": {
+      "slot": "R",
+      "name": "Curse of the Sad Mummy",
+      "cooldown": [
+        150.0,
+        125.0,
+        100.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    }
+  },
+  "verified": false
+}

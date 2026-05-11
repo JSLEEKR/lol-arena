@@ -1,0 +1,56 @@
+{
+  "champion_key": "Janna",
+  "abilities": {
+    "Q": {
+      "slot": "Q",
+      "name": "Howling Gale",
+      "cooldown": [
+        14.0,
+        14.0,
+        14.0,
+        14.0,
+        14.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "W": {
+      "slot": "W",
+      "name": "Zephyr",
+      "cooldown": [
+        8.0,
+        7.5,
+        7.0,
+        6.5,
+        6.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "E": {
+      "slot": "E",
+      "name": "Eye Of The Storm",
+      "cooldown": [
+        16.0,
+        15.0,
+        14.0,
+        13.0,
+        12.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "R": {
+      "slot": "R",
+      "name": "Monsoon",
+      "cooldown": [
+        130.0,
+        115.0,
+        100.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    }
+  },
+  "verified": false
+}

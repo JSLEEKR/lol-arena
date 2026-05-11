@@ -1,0 +1,56 @@
+{
+  "champion_key": "Lulu",
+  "abilities": {
+    "Q": {
+      "slot": "Q",
+      "name": "Glitterlance",
+      "cooldown": [
+        7.0,
+        7.0,
+        7.0,
+        7.0,
+        7.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "W": {
+      "slot": "W",
+      "name": "Whimsy",
+      "cooldown": [
+        18.0,
+        18.0,
+        18.0,
+        18.0,
+        18.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "E": {
+      "slot": "E",
+      "name": "Help, Pix!",
+      "cooldown": [
+        10.0,
+        9.5,
+        9.0,
+        8.5,
+        8.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "R": {
+      "slot": "R",
+      "name": "Wild Growth",
+      "cooldown": [
+        120.0,
+        100.0,
+        80.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    }
+  },
+  "verified": false
+}

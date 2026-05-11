@@ -1,0 +1,56 @@
+{
+  "champion_key": "KSante",
+  "abilities": {
+    "Q": {
+      "slot": "Q",
+      "name": "Ntofo Strikes",
+      "cooldown": [
+        3.5,
+        3.5,
+        3.5,
+        3.5,
+        3.5
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "W": {
+      "slot": "W",
+      "name": "Path Maker",
+      "cooldown": [
+        14.0,
+        13.0,
+        12.0,
+        11.0,
+        10.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "E": {
+      "slot": "E",
+      "name": "Footwork",
+      "cooldown": [
+        10.0,
+        9.5,
+        9.0,
+        8.5,
+        8.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "R": {
+      "slot": "R",
+      "name": "All Out",
+      "cooldown": [
+        120.0,
+        100.0,
+        80.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    }
+  },
+  "verified": false
+}

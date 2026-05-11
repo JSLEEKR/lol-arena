@@ -4,15 +4,29 @@
     "Q": {
       "slot": "Q",
       "name": "Alpha Strike",
-      "cooldown": [18, 16, 14, 12, 10],
+      "cooldown": [
+        18,
+        16,
+        14,
+        12,
+        10
+      ],
       "cast_time": 0.75,
       "repeat": 4,
       "hits": [
         {
           "name": "Strike",
           "damage_type": "physical",
-          "base": [25, 60, 95, 130, 165],
-          "ratios": {"total_ad": 0.5},
+          "base": [
+            25,
+            60,
+            95,
+            130,
+            165
+          ],
+          "ratios": {
+            "total_ad": 0.5
+          },
           "can_crit": true
         }
       ]
@@ -20,23 +34,42 @@
     "E": {
       "slot": "E",
       "name": "Wuju Style (bonus true on hit)",
-      "cooldown": [16, 14, 12, 10, 8],
+      "cooldown": [
+        16,
+        14,
+        12,
+        10,
+        8
+      ],
       "cast_time": 0,
       "hits": [
         {
           "name": "Bonus on-hit",
           "damage_type": "true",
-          "base": [15, 30, 45, 60, 75],
-          "ratios": {"bonus_ad": 0.4}
+          "base": [
+            15,
+            30,
+            45,
+            60,
+            75
+          ],
+          "ratios": {
+            "bonus_ad": 0.4
+          }
         }
       ]
     },
     "R": {
       "slot": "R",
       "name": "Highlander (AS + cooldown reset, no direct dmg)",
-      "cooldown": [85, 70, 55],
+      "cooldown": [
+        85,
+        70,
+        55
+      ],
       "cast_time": 0,
       "hits": []
     }
-  }
+  },
+  "verified": true
 }

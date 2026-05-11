@@ -1,0 +1,56 @@
+{
+  "champion_key": "Nocturne",
+  "abilities": {
+    "Q": {
+      "slot": "Q",
+      "name": "Duskbringer",
+      "cooldown": [
+        8.0,
+        8.0,
+        8.0,
+        8.0,
+        8.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "W": {
+      "slot": "W",
+      "name": "Shroud of Darkness",
+      "cooldown": [
+        20.0,
+        18.0,
+        16.0,
+        14.0,
+        12.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "E": {
+      "slot": "E",
+      "name": "Unspeakable Horror",
+      "cooldown": [
+        15.0,
+        14.0,
+        13.0,
+        12.0,
+        11.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "R": {
+      "slot": "R",
+      "name": "Paranoia",
+      "cooldown": [
+        140.0,
+        115.0,
+        90.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    }
+  },
+  "verified": false
+}

@@ -1,0 +1,56 @@
+{
+  "champion_key": "TahmKench",
+  "abilities": {
+    "Q": {
+      "slot": "Q",
+      "name": "Tongue Lash",
+      "cooldown": [
+        7.0,
+        6.5,
+        6.0,
+        5.5,
+        5.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "W": {
+      "slot": "W",
+      "name": "Abyssal Dive",
+      "cooldown": [
+        21.0,
+        20.0,
+        19.0,
+        18.0,
+        17.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "E": {
+      "slot": "E",
+      "name": "Thick Skin",
+      "cooldown": [
+        3.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "R": {
+      "slot": "R",
+      "name": "Devour",
+      "cooldown": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    }
+  },
+  "verified": false
+}

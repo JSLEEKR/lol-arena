@@ -1,0 +1,56 @@
+{
+  "champion_key": "Talon",
+  "abilities": {
+    "Q": {
+      "slot": "Q",
+      "name": "Noxian Diplomacy",
+      "cooldown": [
+        8.0,
+        7.5,
+        7.0,
+        6.5,
+        6.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "W": {
+      "slot": "W",
+      "name": "Rake",
+      "cooldown": [
+        9.0,
+        8.5,
+        8.0,
+        7.5,
+        7.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "E": {
+      "slot": "E",
+      "name": "Assassin's Path",
+      "cooldown": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "R": {
+      "slot": "R",
+      "name": "Shadow Assault",
+      "cooldown": [
+        100.0,
+        80.0,
+        60.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    }
+  },
+  "verified": false
+}

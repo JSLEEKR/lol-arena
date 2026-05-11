@@ -1,0 +1,56 @@
+{
+  "champion_key": "Fiddlesticks",
+  "abilities": {
+    "Q": {
+      "slot": "Q",
+      "name": "Terrify",
+      "cooldown": [
+        15.0,
+        14.5,
+        14.0,
+        13.5,
+        13.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "W": {
+      "slot": "W",
+      "name": "Bountiful Harvest",
+      "cooldown": [
+        10.0,
+        9.5,
+        9.0,
+        8.5,
+        8.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "E": {
+      "slot": "E",
+      "name": "Reap",
+      "cooldown": [
+        10.0,
+        9.0,
+        8.0,
+        7.0,
+        6.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "R": {
+      "slot": "R",
+      "name": "Crowstorm",
+      "cooldown": [
+        140.0,
+        110.0,
+        80.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    }
+  },
+  "verified": false
+}

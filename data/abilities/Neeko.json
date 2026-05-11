@@ -1,0 +1,56 @@
+{
+  "champion_key": "Neeko",
+  "abilities": {
+    "Q": {
+      "slot": "Q",
+      "name": "Blooming Burst",
+      "cooldown": [
+        9.0,
+        8.5,
+        8.0,
+        7.5,
+        7.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "W": {
+      "slot": "W",
+      "name": "Shapesplitter",
+      "cooldown": [
+        16.0,
+        15.0,
+        14.0,
+        13.0,
+        12.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "E": {
+      "slot": "E",
+      "name": "Tangle-Barbs",
+      "cooldown": [
+        12.0,
+        11.5,
+        11.0,
+        10.5,
+        10.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "R": {
+      "slot": "R",
+      "name": "Pop Blossom",
+      "cooldown": [
+        120.0,
+        105.0,
+        90.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    }
+  },
+  "verified": false
+}

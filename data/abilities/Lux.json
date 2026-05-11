@@ -4,44 +4,83 @@
     "Q": {
       "slot": "Q",
       "name": "Light Binding",
-      "cooldown": [11, 10.5, 10, 9.5, 9],
+      "cooldown": [
+        11,
+        10.5,
+        10,
+        9.5,
+        9
+      ],
       "cast_time": 0.25,
       "hits": [
         {
           "name": "Bind",
           "damage_type": "magical",
-          "base": [80, 125, 170, 215, 260],
-          "ratios": {"ap": 0.7}
+          "base": [
+            80,
+            125,
+            170,
+            215,
+            260
+          ],
+          "ratios": {
+            "ap": 0.7
+          }
         }
       ]
     },
     "E": {
       "slot": "E",
       "name": "Lucent Singularity",
-      "cooldown": [10, 9.5, 9, 8.5, 8],
+      "cooldown": [
+        10,
+        9.5,
+        9,
+        8.5,
+        8
+      ],
       "cast_time": 0.25,
       "hits": [
         {
           "name": "Burst",
           "damage_type": "magical",
-          "base": [70, 120, 170, 220, 270],
-          "ratios": {"ap": 0.8}
+          "base": [
+            70,
+            120,
+            170,
+            220,
+            270
+          ],
+          "ratios": {
+            "ap": 0.8
+          }
         }
       ]
     },
     "R": {
       "slot": "R",
       "name": "Final Spark",
-      "cooldown": [80, 65, 50],
+      "cooldown": [
+        80,
+        65,
+        50
+      ],
       "cast_time": 1.0,
       "hits": [
         {
           "name": "Beam",
           "damage_type": "magical",
-          "base": [300, 400, 500],
-          "ratios": {"ap": 1.2}
+          "base": [
+            300,
+            400,
+            500
+          ],
+          "ratios": {
+            "ap": 1.2
+          }
         }
       ]
     }
-  }
+  },
+  "verified": true
 }

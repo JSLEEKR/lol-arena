@@ -1,0 +1,56 @@
+{
+  "champion_key": "Shen",
+  "abilities": {
+    "Q": {
+      "slot": "Q",
+      "name": "Twilight Assault",
+      "cooldown": [
+        8.0,
+        7.25,
+        6.5,
+        5.75,
+        5.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "W": {
+      "slot": "W",
+      "name": "Spirit's Refuge",
+      "cooldown": [
+        16.0,
+        14.5,
+        13.0,
+        11.5,
+        10.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "E": {
+      "slot": "E",
+      "name": "Shadow Dash",
+      "cooldown": [
+        18.0,
+        16.0,
+        14.0,
+        12.0,
+        10.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "R": {
+      "slot": "R",
+      "name": "Stand United",
+      "cooldown": [
+        200.0,
+        180.0,
+        160.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    }
+  },
+  "verified": false
+}

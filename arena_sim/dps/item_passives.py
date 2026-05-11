@@ -40,18 +40,25 @@ def _has(item_names: set[str], *needles: str) -> bool:
 
 
 def compute_on_hit(stats: ComputedStats, items: list[Item], target: Dummy) -> OnHitBundle:
-    """Sum the on-hit effects for the given build vs the dummy."""
+    """Sum the on-hit effects for the given build vs the dummy.
+
+    Each branch is a `if _has(...)` check by canonical lower-case item name.
+    Where Riot's tooltip uses time-based or proc-conditional damage, we
+    amortize per-AA so the DPS calc stays static. Estimates documented inline.
+    """
     names = {i.name.lower() for i in items}
     physical = 0.0
     magical = 0.0
     true_dmg = 0.0
     sheen_pct = 0.0
     armor_shred = 0.0
+    bonus_vs_hp_pct = 0.0  # Giant Slayer-style damage amp vs high-HP targets
 
-    # BORK / Kraken Slayer: %current HP magic on-hit (BORK 12%, capped 60 vs minions)
+    # ---- pure on-hit damage ----
+    # BORK: 12% current HP magic (estimate ~ 12% of current HP per AA, capped vs minions)
     if _has(names, "blade of the ruined king"):
         magical += target.hp * 0.12
-    # Kraken Slayer: every 3rd AA bonus true damage; amortize per AA → bonus_per_hit / 3
+    # Kraken Slayer: every 3rd AA bonus true damage; amortize / 3
     if _has(names, "kraken slayer"):
         true_dmg += (60 + stats.bonus_ad * 0.45) / 3
     # Wit's End: flat 15-80 magic on-hit scaling with level
@@ -60,22 +67,74 @@ def compute_on_hit(stats: ComputedStats, items: list[Item], target: Dummy) -> On
     # Nashor's Tooth: 15 + 20%AP magic on-hit
     if _has(names, "nashor's tooth"):
         magical += 15 + stats.ability_power * 0.20
+    # Rageblade (Guinsoo's): on-hit doubled-up; approximated as +AA proc of 30 magic
+    if _has(names, "guinsoo's rageblade"):
+        magical += 30
+    # Terminus: alternating modes; avg ~30 magic + 30 physical on-hit
+    if _has(names, "terminus"):
+        magical += 30
+        physical += 30
 
-    # Sheen / Trinity / Essence Reaver: empowered AA after ability
-    # Sheen procs every 1.5s; for one-rotation calc we add the proc to next AA.
+    # ---- energized items (every ~6 AA-equivalent, amortize per-AA) ----
+    # Stormrazor: ~90 + 10%bonus_ad physical every 6 AAs (after move) → /6
+    if _has(names, "stormrazor"):
+        physical += (90 + stats.bonus_ad * 0.10) / 6
+    # Rapid Firecannon: ~80 magic + 30% bonus AD every 6 AAs → /6
+    if _has(names, "rapid firecannon"):
+        magical += (80 + stats.bonus_ad * 0.30) / 6
+    # Statikk Shiv: ~70 magic + 50% AD every 6 AAs (AoE; approximated single-target) → /6
+    if _has(names, "statikk shiv"):
+        magical += (70 + stats.attack_damage * 0.50) / 6
+
+    # ---- empowered-attack procs (Sheen family) ----
     if _has(names, "sheen"):
-        sheen_pct = max(sheen_pct, 1.0)  # 100% base AD
+        sheen_pct = max(sheen_pct, 1.0)
     if _has(names, "trinity force"):
-        sheen_pct = max(sheen_pct, 2.0)  # 200% base AD
+        sheen_pct = max(sheen_pct, 2.0)
     if _has(names, "essence reaver"):
-        sheen_pct = max(sheen_pct, 1.4)  # 140% base AD
+        sheen_pct = max(sheen_pct, 1.4)
     if _has(names, "iceborn gauntlet"):
         sheen_pct = max(sheen_pct, 1.0)
+    # Sundered Sky: Lightshield procs ~every 8s, empowered AA crits → ~+50% base AD
+    # per ability cast; approximated as 0.5x sheen.
+    if _has(names, "sundered sky"):
+        sheen_pct = max(sheen_pct, 0.6)
+    # Spear of Shojin: bonus damage on abilities. Modeled as a half-strength sheen.
+    if _has(names, "spear of shojin"):
+        sheen_pct = max(sheen_pct, 0.5)
+    # Voltaic Cyclosword: after dash/blink, next AA deals ~125 + 60% bonus_ad
+    # physical. In Arena, dashes happen ~every 8s → approximate as
+    # 0.3x sheen-proc-equivalent if user runs a mobility champ.
+    if _has(names, "voltaic cyclosword"):
+        physical += 12 + stats.bonus_ad * 0.06  # amortized per-AA value
 
-    # Black Cleaver: 6% armor reduction per stack, max 5 = 30%. Assume 80% uptime
-    # in a sustained DPS calc → 0.30 * 0.8 = 0.24 average.
+    # ---- armor shred / magic pen / multipliers ----
+    # Black Cleaver: 6% armor reduction per stack, max 5 = 30%. ~80% uptime → 24% avg.
     if _has(names, "black cleaver"):
         armor_shred = max(armor_shred, 0.30 * 0.8)
+
+    # Lord Dominik's Regards: Giant Slayer — up to +15% damage vs targets with
+    # more bonus HP. Approximate vs tank dummy ≈ +15%; vs squishy ≈ +3%.
+    if _has(names, "lord dominik's regards"):
+        # crude HP-based scaler: tank=15%, bruiser=8%, squishy=3%, naked=0%
+        diff = max(target.hp - 1800, 0) / (4500 - 1800)
+        bonus_vs_hp_pct = max(bonus_vs_hp_pct, 0.15 * min(diff, 1.0))
+
+    # Liandry's Torment: 2% max HP magic damage per second (burn). Per-AA at
+    # 1 AA/s → 2% max HP magic per AA, capped at 50% over duration in lore.
+    if _has(names, "liandry's torment") or _has(names, "liandry's anguish"):
+        magical += target.hp * 0.02
+
+    # Shadowflame: bonus magic damage on low-HP targets, +20% crit on magic damage.
+    # Approximated as flat +10% magic effective.
+    if _has(names, "shadowflame"):
+        magical *= 1.10
+
+    # ---- multiplicative against target HP bracket ----
+    if bonus_vs_hp_pct > 0:
+        physical *= 1 + bonus_vs_hp_pct
+        magical *= 1 + bonus_vs_hp_pct
+        true_dmg *= 1 + bonus_vs_hp_pct
 
     return OnHitBundle(
         pre_mitigation_physical=physical,

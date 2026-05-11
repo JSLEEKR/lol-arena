@@ -1,0 +1,56 @@
+{
+  "champion_key": "Morgana",
+  "abilities": {
+    "Q": {
+      "slot": "Q",
+      "name": "Dark Binding",
+      "cooldown": [
+        10.0,
+        10.0,
+        10.0,
+        10.0,
+        10.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "W": {
+      "slot": "W",
+      "name": "Tormented Shadow",
+      "cooldown": [
+        12.0,
+        12.0,
+        12.0,
+        12.0,
+        12.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "E": {
+      "slot": "E",
+      "name": "Black Shield",
+      "cooldown": [
+        26.0,
+        23.5,
+        21.0,
+        18.5,
+        16.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "R": {
+      "slot": "R",
+      "name": "Soul Shackles",
+      "cooldown": [
+        120.0,
+        110.0,
+        100.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    }
+  },
+  "verified": false
+}

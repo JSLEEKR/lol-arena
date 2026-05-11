@@ -1,0 +1,57 @@
+{
+  "champion_key": "Nidalee",
+  "abilities": {
+    "Q": {
+      "slot": "Q",
+      "name": "Javelin Toss / Takedown",
+      "cooldown": [
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "W": {
+      "slot": "W",
+      "name": "Bushwhack / Pounce",
+      "cooldown": [
+        13.0,
+        12.0,
+        11.0,
+        10.0,
+        9.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "E": {
+      "slot": "E",
+      "name": "Primal Surge / Swipe",
+      "cooldown": [
+        12.0,
+        12.0,
+        12.0,
+        12.0,
+        12.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "R": {
+      "slot": "R",
+      "name": "Aspect Of The Cougar",
+      "cooldown": [
+        3.0,
+        3.0,
+        3.0,
+        3.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    }
+  },
+  "verified": false
+}

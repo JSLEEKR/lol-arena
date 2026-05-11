@@ -4,52 +4,98 @@
     "Q": {
       "slot": "Q",
       "name": "Timewinder (out + return)",
-      "cooldown": [11, 10, 9, 8, 7],
+      "cooldown": [
+        11,
+        10,
+        9,
+        8,
+        7
+      ],
       "cast_time": 0.25,
       "repeat": 2,
       "hits": [
         {
           "name": "Pass",
           "damage_type": "magical",
-          "base": [40, 60, 80, 100, 120],
-          "ratios": {"ap": 0.2}
+          "base": [
+            40,
+            60,
+            80,
+            100,
+            120
+          ],
+          "ratios": {
+            "ap": 0.2
+          }
         }
       ]
     },
     "W": {
       "slot": "W",
       "name": "Parallel Convergence (delayed stun)",
-      "cooldown": [16, 15, 14, 13, 12],
+      "cooldown": [
+        16,
+        15,
+        14,
+        13,
+        12
+      ],
       "cast_time": 0.4,
       "hits": []
     },
     "E": {
       "slot": "E",
       "name": "Phase Dive",
-      "cooldown": [10, 9, 8, 7, 6],
+      "cooldown": [
+        10,
+        9,
+        8,
+        7,
+        6
+      ],
       "cast_time": 0.25,
       "hits": [
         {
           "name": "Strike",
           "damage_type": "magical",
-          "base": [60, 100, 140, 180, 220],
-          "ratios": {"total_ad": 1.0, "ap": 0.6}
+          "base": [
+            60,
+            100,
+            140,
+            180,
+            220
+          ],
+          "ratios": {
+            "total_ad": 1.0,
+            "ap": 0.6
+          }
         }
       ]
     },
     "R": {
       "slot": "R",
       "name": "Chronobreak",
-      "cooldown": [110, 90, 70],
+      "cooldown": [
+        110,
+        90,
+        70
+      ],
       "cast_time": 0.6,
       "hits": [
         {
           "name": "Burst",
           "damage_type": "magical",
-          "base": [200, 350, 500],
-          "ratios": {"ap": 1.5}
+          "base": [
+            200,
+            350,
+            500
+          ],
+          "ratios": {
+            "ap": 1.5
+          }
         }
       ]
     }
-  }
+  },
+  "verified": true
 }

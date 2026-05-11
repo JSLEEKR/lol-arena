@@ -1,0 +1,56 @@
+{
+  "champion_key": "Zoe",
+  "abilities": {
+    "Q": {
+      "slot": "Q",
+      "name": "Paddle Star!",
+      "cooldown": [
+        8.5,
+        8.0,
+        7.5,
+        7.0,
+        6.5
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "W": {
+      "slot": "W",
+      "name": "Spell Thief",
+      "cooldown": [
+        0.25,
+        0.25,
+        0.25,
+        0.25,
+        0.25
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "E": {
+      "slot": "E",
+      "name": "Sleepy Trouble Bubble",
+      "cooldown": [
+        18.0,
+        17.0,
+        16.0,
+        15.0,
+        14.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "R": {
+      "slot": "R",
+      "name": "Portal Jump",
+      "cooldown": [
+        11.0,
+        8.0,
+        5.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    }
+  },
+  "verified": false
+}

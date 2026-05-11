@@ -4,51 +4,97 @@
     "Q": {
       "slot": "Q",
       "name": "Baleful Strike",
-      "cooldown": [6, 5.5, 5, 4.5, 4],
+      "cooldown": [
+        6,
+        5.5,
+        5,
+        4.5,
+        4
+      ],
       "cast_time": 0.25,
       "hits": [
         {
           "name": "Bolt",
           "damage_type": "magical",
-          "base": [85, 130, 175, 220, 265],
-          "ratios": {"ap": 0.6}
+          "base": [
+            85,
+            130,
+            175,
+            220,
+            265
+          ],
+          "ratios": {
+            "ap": 0.6
+          }
         }
       ]
     },
     "W": {
       "slot": "W",
       "name": "Dark Matter",
-      "cooldown": [12, 11, 10, 9, 8],
+      "cooldown": [
+        12,
+        11,
+        10,
+        9,
+        8
+      ],
       "cast_time": 1.25,
       "hits": [
         {
           "name": "Meteor",
           "damage_type": "magical",
-          "base": [110, 155, 200, 245, 290],
-          "ratios": {"ap": 1.0}
+          "base": [
+            110,
+            155,
+            200,
+            245,
+            290
+          ],
+          "ratios": {
+            "ap": 1.0
+          }
         }
       ]
     },
     "E": {
       "slot": "E",
       "name": "Event Horizon (stun, no damage)",
-      "cooldown": [16, 15, 14, 13, 12],
+      "cooldown": [
+        16,
+        15,
+        14,
+        13,
+        12
+      ],
       "cast_time": 0.25,
       "hits": []
     },
     "R": {
       "slot": "R",
       "name": "Primordial Burst",
-      "cooldown": [80, 70, 60],
+      "cooldown": [
+        80,
+        70,
+        60
+      ],
       "cast_time": 0.5,
       "hits": [
         {
           "name": "Blast",
           "damage_type": "magical",
-          "base": [150, 250, 350],
-          "ratios": {"ap": 0.8, "missing_hp": 0.6}
+          "base": [
+            150,
+            250,
+            350
+          ],
+          "ratios": {
+            "ap": 0.8,
+            "missing_hp": 0.6
+          }
         }
       ]
     }
-  }
+  },
+  "verified": true
 }

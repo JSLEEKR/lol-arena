@@ -1,0 +1,56 @@
+{
+  "champion_key": "Sona",
+  "abilities": {
+    "Q": {
+      "slot": "Q",
+      "name": "Hymn of Valor",
+      "cooldown": [
+        8.0,
+        8.0,
+        8.0,
+        8.0,
+        8.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "W": {
+      "slot": "W",
+      "name": "Aria of Perseverance",
+      "cooldown": [
+        10.0,
+        10.0,
+        10.0,
+        10.0,
+        10.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "E": {
+      "slot": "E",
+      "name": "Song of Celerity",
+      "cooldown": [
+        14.0,
+        14.0,
+        14.0,
+        14.0,
+        14.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "R": {
+      "slot": "R",
+      "name": "Crescendo",
+      "cooldown": [
+        140.0,
+        120.0,
+        100.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    }
+  },
+  "verified": false
+}

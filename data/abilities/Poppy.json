@@ -1,0 +1,56 @@
+{
+  "champion_key": "Poppy",
+  "abilities": {
+    "Q": {
+      "slot": "Q",
+      "name": "Hammer Shock",
+      "cooldown": [
+        8.0,
+        7.0,
+        6.0,
+        5.0,
+        4.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "W": {
+      "slot": "W",
+      "name": "Steadfast Presence",
+      "cooldown": [
+        20.0,
+        18.0,
+        16.0,
+        14.0,
+        12.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "E": {
+      "slot": "E",
+      "name": "Heroic Charge",
+      "cooldown": [
+        14.0,
+        13.0,
+        12.0,
+        11.0,
+        10.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "R": {
+      "slot": "R",
+      "name": "Keeper's Verdict",
+      "cooldown": [
+        140.0,
+        120.0,
+        100.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    }
+  },
+  "verified": false
+}

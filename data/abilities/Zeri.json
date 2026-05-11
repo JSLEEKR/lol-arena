@@ -1,0 +1,56 @@
+{
+  "champion_key": "Zeri",
+  "abilities": {
+    "Q": {
+      "slot": "Q",
+      "name": "Burst Fire",
+      "cooldown": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "W": {
+      "slot": "W",
+      "name": "Ultrashock Laser",
+      "cooldown": [
+        12.0,
+        11.0,
+        10.0,
+        9.0,
+        8.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "E": {
+      "slot": "E",
+      "name": "Spark Surge",
+      "cooldown": [
+        24.0,
+        22.5,
+        21.0,
+        19.5,
+        18.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "R": {
+      "slot": "R",
+      "name": "Lightning Crash",
+      "cooldown": [
+        80.0,
+        75.0,
+        70.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    }
+  },
+  "verified": false
+}

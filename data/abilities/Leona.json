@@ -1,0 +1,56 @@
+{
+  "champion_key": "Leona",
+  "abilities": {
+    "Q": {
+      "slot": "Q",
+      "name": "Shield of Daybreak",
+      "cooldown": [
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "W": {
+      "slot": "W",
+      "name": "Eclipse",
+      "cooldown": [
+        14.0,
+        13.0,
+        12.0,
+        11.0,
+        10.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "E": {
+      "slot": "E",
+      "name": "Zenith Blade",
+      "cooldown": [
+        12.0,
+        10.5,
+        9.0,
+        7.5,
+        6.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "R": {
+      "slot": "R",
+      "name": "Solar Flare",
+      "cooldown": [
+        90.0,
+        75.0,
+        60.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    }
+  },
+  "verified": false
+}

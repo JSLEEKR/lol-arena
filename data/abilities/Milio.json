@@ -1,0 +1,56 @@
+{
+  "champion_key": "Milio",
+  "abilities": {
+    "Q": {
+      "slot": "Q",
+      "name": "Ultra Mega Fire Kick",
+      "cooldown": [
+        10.0,
+        10.0,
+        10.0,
+        10.0,
+        10.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "W": {
+      "slot": "W",
+      "name": "Cozy Campfire",
+      "cooldown": [
+        29.0,
+        27.0,
+        25.0,
+        23.0,
+        21.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "E": {
+      "slot": "E",
+      "name": "Warm Hugs",
+      "cooldown": [
+        0.5,
+        0.5,
+        0.5,
+        0.5,
+        0.5
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    },
+    "R": {
+      "slot": "R",
+      "name": "Breath of Life",
+      "cooldown": [
+        160.0,
+        145.0,
+        130.0
+      ],
+      "cast_time": 0.25,
+      "hits": []
+    }
+  },
+  "verified": false
+}
