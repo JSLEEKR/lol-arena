@@ -1,0 +1,26 @@
+[project]
+name = "arena-sim"
+version = "0.1.0"
+description = "LoL Arena DPS calculator and stat aggregator"
+requires-python = ">=3.11"
+dependencies = [
+    "httpx>=0.27",
+    "pydantic>=2.6",
+    "typer>=0.12",
+    "rich>=13.7",
+    "tqdm>=4.66",
+]
+
+[project.scripts]
+arena = "arena_sim.cli:app"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["arena_sim"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
