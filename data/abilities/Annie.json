@@ -1,0 +1,47 @@
+{
+  "champion_key": "Annie",
+  "abilities": {
+    "Q": {
+      "slot": "Q",
+      "name": "Disintegrate",
+      "cooldown": [4, 4, 4, 4, 4],
+      "cast_time": 0.25,
+      "hits": [
+        {
+          "name": "Bolt",
+          "damage_type": "magical",
+          "base": [80, 115, 150, 185, 220],
+          "ratios": {"ap": 0.8}
+        }
+      ]
+    },
+    "W": {
+      "slot": "W",
+      "name": "Incinerate",
+      "cooldown": [8, 7.5, 7, 6.5, 6],
+      "cast_time": 0.25,
+      "hits": [
+        {
+          "name": "Cone",
+          "damage_type": "magical",
+          "base": [70, 115, 160, 205, 250],
+          "ratios": {"ap": 0.85}
+        }
+      ]
+    },
+    "R": {
+      "slot": "R",
+      "name": "Summon: Tibbers",
+      "cooldown": [120, 100, 80],
+      "cast_time": 0.5,
+      "hits": [
+        {
+          "name": "Impact",
+          "damage_type": "magical",
+          "base": [150, 275, 400],
+          "ratios": {"ap": 0.65}
+        }
+      ]
+    }
+  }
+}

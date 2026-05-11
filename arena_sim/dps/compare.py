@@ -7,6 +7,7 @@ from dataclasses import dataclass
 from arena_sim.dps.ability import full_rotation
 from arena_sim.dps.auto import auto_dps
 from arena_sim.dps.dummies import DUMMIES, Dummy
+from arena_sim.models import Item
 from arena_sim.models.coefficients import ChampionAbilities
 from arena_sim.stats.computed import ComputedStats
 
@@ -16,6 +17,7 @@ class BuildSide:
     label: str
     stats: ComputedStats
     abilities: ChampionAbilities | None = None
+    items: list[Item] | None = None
 
 
 @dataclass
@@ -52,9 +54,10 @@ def compare_dps(
 def _dps_for(side: BuildSide, target: Dummy, missing_hp_pct: float) -> float:
     if side.abilities is not None:
         r = full_rotation(side.abilities, side.stats, target,
-                          target_missing_hp_pct=missing_hp_pct)
+                          target_missing_hp_pct=missing_hp_pct,
+                          items=side.items)
         return r.sustained_dps
-    return auto_dps(side.stats, target).dps
+    return auto_dps(side.stats, target, items=side.items).dps
 
 
 def stat_diff(a: ComputedStats, b: ComputedStats) -> dict[str, tuple[float, float, float]]:

@@ -1,0 +1,49 @@
+{
+  "champion_key": "Lucian",
+  "abilities": {
+    "Q": {
+      "slot": "Q",
+      "name": "Piercing Light",
+      "cooldown": [9, 8, 7, 6, 5],
+      "cast_time": 0.4,
+      "hits": [
+        {
+          "name": "Beam",
+          "damage_type": "physical",
+          "base": [85, 115, 145, 175, 205],
+          "ratios": {"total_ad": 0.5, "ap": 0.3}
+        }
+      ]
+    },
+    "W": {
+      "slot": "W",
+      "name": "Ardent Blaze",
+      "cooldown": [14, 13, 12, 11, 10],
+      "cast_time": 0.25,
+      "hits": [
+        {
+          "name": "Mark",
+          "damage_type": "magical",
+          "base": [75, 110, 145, 180, 215],
+          "ratios": {"ap": 0.9}
+        }
+      ]
+    },
+    "R": {
+      "slot": "R",
+      "name": "The Culling",
+      "cooldown": [100, 85, 70],
+      "cast_time": 2.5,
+      "repeat": 22,
+      "hits": [
+        {
+          "name": "Shot",
+          "damage_type": "physical",
+          "base": [15, 20, 25],
+          "ratios": {"total_ad": 0.25, "ap": 0.15},
+          "can_crit": true
+        }
+      ]
+    }
+  }
+}

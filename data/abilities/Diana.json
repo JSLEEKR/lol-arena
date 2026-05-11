@@ -1,0 +1,55 @@
+{
+  "champion_key": "Diana",
+  "abilities": {
+    "Q": {
+      "slot": "Q",
+      "name": "Crescent Strike",
+      "cooldown": [8, 7.5, 7, 6.5, 6],
+      "cast_time": 0.25,
+      "hits": [
+        {
+          "name": "Arc",
+          "damage_type": "magical",
+          "base": [60, 90, 120, 150, 180],
+          "ratios": {"ap": 0.7}
+        }
+      ]
+    },
+    "W": {
+      "slot": "W",
+      "name": "Pale Cascade",
+      "cooldown": [12, 11, 10, 9, 8],
+      "cast_time": 0.25,
+      "repeat": 3,
+      "hits": [
+        {
+          "name": "Orb",
+          "damage_type": "magical",
+          "base": [22, 34, 46, 58, 70],
+          "ratios": {"ap": 0.2}
+        }
+      ]
+    },
+    "E": {
+      "slot": "E",
+      "name": "Lunar Rush",
+      "cooldown": [25, 22.5, 20, 17.5, 15],
+      "cast_time": 0.3,
+      "hits": []
+    },
+    "R": {
+      "slot": "R",
+      "name": "Moonfall",
+      "cooldown": [80, 65, 50],
+      "cast_time": 0.7,
+      "hits": [
+        {
+          "name": "Slam",
+          "damage_type": "magical",
+          "base": [150, 250, 350],
+          "ratios": {"ap": 0.8}
+        }
+      ]
+    }
+  }
+}

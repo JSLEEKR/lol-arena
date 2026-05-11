@@ -11,6 +11,8 @@ from dataclasses import dataclass, field
 from arena_sim.dps.auto import auto_dps
 from arena_sim.dps.damage import DamageType, apply_mitigation
 from arena_sim.dps.dummies import Dummy
+from arena_sim.dps.item_passives import compute_on_hit
+from arena_sim.models import Item
 from arena_sim.models.coefficients import AbilityCoefficients, ChampionAbilities, DamageKind, Hit
 from arena_sim.stats.computed import ComputedStats
 
@@ -135,13 +137,19 @@ def full_rotation(
     target: Dummy,
     *,
     target_missing_hp_pct: float = 0.0,
+    items: list[Item] | None = None,
 ) -> RotationReport:
-    """One combo: use every ability once, then auto-attack in the gap until longest CD ends."""
+    """One combo: use every ability once, then auto-attack in the gap until longest CD ends.
+
+    If `items` are provided, on-hit effects (BORK, Wit's End, etc.) are added to
+    autos, and Sheen-class procs are added to the first AA after each ability.
+    """
     used: list[str] = []
     burst = 0.0
     breakdown: dict[str, float] = {}
     rotation_time = 0.0
     longest_cd = 0.0
+    abilities_cast = 0
 
     for slot in ("Q", "W", "E", "R"):
         ab = abilities.abilities.get(slot)
@@ -155,16 +163,35 @@ def full_rotation(
         burst += dmg
         breakdown[f"{slot} ({ab.name})"] = dmg
         rotation_time += ab.cast_time
-        # Cooldown gating for sustained: use rank 1 CD if ranks omitted.
+        abilities_cast += 1
         cd_arr = ab.cooldown or []
         cd = cd_arr[min(rank, len(cd_arr)) - 1] if cd_arr else 0.0
-        cd = stats.cooldown(cd)  # apply ability haste
+        cd = stats.cooldown(cd)
         longest_cd = max(longest_cd, cd)
 
-    auto = auto_dps(stats, target)
+    auto = auto_dps(stats, target, items=items)
     breakdown[f"Auto ({stats.attack_speed:.2f} AS)"] = auto.auto_damage
 
-    # Sustained window: max(cast_total, longest_cd) — autos fill the rest
+    # Sheen proc: one empowered AA per ability cast (in a single rotation).
+    sheen_burst = 0.0
+    if items:
+        bundle = compute_on_hit(stats, items, target)
+        if bundle.sheen_proc_extra_pct_of_base_ad > 0 and abilities_cast > 0:
+            from arena_sim.dps.damage import apply_mitigation
+            lvl_factor = 0.6 + 0.4 * stats.level / 18
+            flat_pen = stats.lethality * lvl_factor
+            raw = stats.base_ad * bundle.sheen_proc_extra_pct_of_base_ad
+            per_proc = apply_mitigation(
+                raw, damage_type=DamageType.PHYSICAL,
+                target_armor=target.armor * (1 - bundle.armor_shred_pct),
+                target_mr=target.magic_resist,
+                flat_armor_pen=flat_pen,
+                armor_pen_pct=stats.armor_pen_pct,
+            )
+            sheen_burst = per_proc * abilities_cast
+            breakdown["Sheen procs"] = sheen_burst
+            burst += sheen_burst
+
     window = max(rotation_time, longest_cd)
     autos_in_window = max(window - rotation_time, 0.0) * stats.attack_speed
     auto_burst_in_window = autos_in_window * auto.auto_damage

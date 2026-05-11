@@ -13,6 +13,7 @@ from rich.console import Console
 from rich.logging import RichHandler
 from rich.table import Table
 
+from arena_sim import __version__
 from arena_sim.data import scrape_augments, scrape_champions, scrape_items, scrape_runes
 from arena_sim.data.enrich_augments import enrich_augment
 from arena_sim.data.enrich_items import enrich_item
@@ -23,7 +24,26 @@ from arena_sim.models import Augment, Champion, Item
 from arena_sim.stats import compose
 
 console = Console()
+
+
+def _version_callback(value: bool) -> None:
+    if value:
+        console.print(f"arena-sim {__version__}")
+        raise typer.Exit()
+
+
 app = typer.Typer(no_args_is_help=True, add_completion=False, rich_markup_mode="rich")
+
+
+@app.callback()
+def _main(
+    version: bool = typer.Option(
+        False, "--version", "-V",
+        callback=_version_callback, is_eager=True,
+        help="Show version and exit.",
+    ),
+) -> None:
+    """LoL Arena theorycrafting toolkit — stat composition + DPS calculation."""
 scrape_app = typer.Typer(no_args_is_help=True, help="Pull data from CommunityDragon / DDragon.")
 build_app = typer.Typer(no_args_is_help=True, help="Inspect builds and stats.")
 dps_app = typer.Typer(no_args_is_help=True, help="Compute DPS for champion builds.")
@@ -154,6 +174,84 @@ def scrape_runes_cmd(verbose: bool = typer.Option(False, "--verbose", "-v")) -> 
     console.print(f"[green]✓[/green] Scraped {len(runes)} runes")
 
 
+@app.command("info")
+def info_cmd() -> None:
+    """Show patch version + scraped data counts + curated coverage."""
+    table = Table(title=f"arena-sim {__version__}", show_header=False)
+    table.add_column(style="bold")
+    table.add_column(justify="right")
+
+    versions = set()
+    for fname in ("champions.json", "items.json", "augments.json", "runes.json"):
+        path = DATA_DIR / fname
+        if path.exists():
+            try:
+                blob = json.loads(path.read_text())
+                if isinstance(blob, dict):
+                    v = blob.get("version")
+                    if v:
+                        versions.add(v)
+                key = next((k for k in blob if k != "version"), None)
+                count = len(blob.get(key, [])) if isinstance(blob, dict) and key else len(blob)
+                table.add_row(fname.replace(".json", ""), str(count))
+            except Exception:  # noqa: BLE001
+                table.add_row(fname.replace(".json", ""), "[red]error[/red]")
+        else:
+            table.add_row(fname.replace(".json", ""), "[yellow]missing[/yellow]")
+
+    table.add_row("hand-curated abilities", str(len(ability_keys())))
+    if versions:
+        table.add_row("patch", ", ".join(sorted(versions)))
+    console.print(table)
+
+    if not (DATA_DIR / "champions.json").exists():
+        console.print("\n[yellow]No scraped data yet. Run [bold]arena scrape all[/bold].[/yellow]")
+
+
+@app.command("list")
+def list_cmd(
+    kind: str = typer.Argument("champions", help="champions | items | augments | abilities"),
+    search: str = typer.Option("", "--search", "-s", help="Filter by substring (case-insensitive)"),
+) -> None:
+    """List entities of the chosen kind, optionally filtered."""
+    s = search.lower()
+
+    if kind == "abilities":
+        keys = ability_keys()
+        if s:
+            keys = [k for k in keys if s in k.lower()]
+        console.print(f"Hand-curated ability data ({len(keys)}):")
+        console.print("  " + ", ".join(keys) if keys else "  (none)")
+        return
+
+    if kind == "champions":
+        champs = _load_champions()
+        names = sorted(c.name for c in champs.values())
+    elif kind == "items":
+        items = _load_items()
+        names = sorted(set(i.name for i in items.values() if i.name))
+    elif kind == "augments":
+        augs = _load_augments()
+        names = sorted(set(a.name for a in augs.values()))
+    else:
+        console.print(f"[red]Unknown kind {kind!r}.[/red] Use: champions | items | augments | abilities")
+        raise typer.Exit(2)
+
+    if s:
+        names = [n for n in names if s in n.lower()]
+
+    # Print in 4 columns
+    if not names:
+        console.print(f"[yellow]No {kind} found{f' matching {search!r}' if s else ''}.[/yellow]")
+        return
+    console.print(f"[bold]{kind} ({len(names)})[/bold]")
+    col = 4
+    width = max(len(n) for n in names) + 2
+    for i in range(0, len(names), col):
+        row = names[i : i + col]
+        console.print("  " + "".join(f"{n:<{width}}" for n in row))
+
+
 @scrape_app.command("all")
 def scrape_all_cmd(verbose: bool = typer.Option(False, "--verbose", "-v")) -> None:
     _configure_logging(verbose)
@@ -273,7 +371,7 @@ def dps_run(
             f"Hand-curated champions: {', '.join(ability_keys()) or '(none)'}"
         )
         for d in targets:
-            r = auto_dps(stats, d)
+            r = auto_dps(stats, d, items=resolved)
             console.print(
                 f"  vs {d.name:8} → DPS [bold]{r.dps:.0f}[/bold] "
                 f"(auto {r.auto_damage:.0f} × AS {r.attack_speed:.2f})"
@@ -288,7 +386,7 @@ def dps_run(
     summary.add_column("AS", justify="right")
 
     for d in targets:
-        r = full_rotation(abilities, stats, d, target_missing_hp_pct=missing_hp)
+        r = full_rotation(abilities, stats, d, target_missing_hp_pct=missing_hp, items=resolved)
         summary.add_row(
             d.name,
             f"{r.ability_burst:.0f}",
@@ -352,9 +450,9 @@ def dps_compare(
     stats_a = compose(champs[champ_a], level=lvl_a, items=resolved_a, augments=resolved_augs_a)
     stats_b = compose(champs[champ_b], level=lvl_b, items=resolved_b, augments=resolved_augs_b)
     side_a = BuildSide(label=f"{champ_a} L{lvl_a}", stats=stats_a,
-                       abilities=get_abilities(champ_a))
+                       abilities=get_abilities(champ_a), items=resolved_a)
     side_b = BuildSide(label=f"{champ_b} L{lvl_b}", stats=stats_b,
-                       abilities=get_abilities(champ_b))
+                       abilities=get_abilities(champ_b), items=resolved_b)
 
     # Stat diff
     diff = stat_diff(stats_a, stats_b)
@@ -364,10 +462,12 @@ def dps_compare(
     stat_table.add_column(side_b.label, justify="right")
     stat_table.add_column("Δ", justify="right")
     for name, (av, bv, dv) in diff.items():
-        is_pct = name in ("Crit", "ArmorPen%")
-        a_str = f"{av:.0%}" if is_pct else f"{av:.1f}"
-        b_str = f"{bv:.0%}" if is_pct else f"{bv:.1f}"
-        stat_table.add_row(name, a_str, b_str, _format_delta(dv, pct=is_pct))
+        is_pct = name in ("Crit", "ArmorPen%", "Lifesteal", "Omnivamp")
+        is_as = name == "AS"
+        fmt = (lambda v: f"{v:.0%}") if is_pct else \
+              (lambda v: f"{v:.3f}") if is_as else \
+              (lambda v: f"{v:.1f}")
+        stat_table.add_row(name, fmt(av), fmt(bv), _format_delta(dv, pct=is_pct))
     console.print(stat_table)
 
     # DPS diff

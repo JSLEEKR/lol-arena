@@ -1,0 +1,48 @@
+{
+  "champion_key": "Riven",
+  "abilities": {
+    "Q": {
+      "slot": "Q",
+      "name": "Broken Wings (3 charges)",
+      "cooldown": [13, 12, 11, 10, 9],
+      "cast_time": 0.6,
+      "repeat": 3,
+      "hits": [
+        {
+          "name": "Slash",
+          "damage_type": "physical",
+          "base": [15, 35, 55, 75, 95],
+          "ratios": {"total_ad": 0.55}
+        }
+      ]
+    },
+    "W": {
+      "slot": "W",
+      "name": "Ki Burst",
+      "cooldown": [11, 10, 9, 8, 7],
+      "cast_time": 0.25,
+      "hits": [
+        {
+          "name": "Burst",
+          "damage_type": "physical",
+          "base": [80, 110, 140, 170, 200],
+          "ratios": {"total_ad": 1.0}
+        }
+      ]
+    },
+    "R": {
+      "slot": "R",
+      "name": "Wind Slash",
+      "cooldown": [60, 45, 30],
+      "cast_time": 0.4,
+      "hits": [
+        {
+          "name": "Slash (missing HP scaling)",
+          "damage_type": "physical",
+          "base": [50, 125, 200],
+          "ratios": {"bonus_ad": 0.6, "missing_hp": 0.5}
+        }
+      ]
+    }
+  }
+}

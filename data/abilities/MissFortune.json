@@ -1,0 +1,56 @@
+{
+  "champion_key": "MissFortune",
+  "abilities": {
+    "Q": {
+      "slot": "Q",
+      "name": "Double Up (both shots)",
+      "cooldown": [8, 7, 6, 5, 4],
+      "cast_time": 0.25,
+      "hits": [
+        {
+          "name": "First shot",
+          "damage_type": "physical",
+          "base": [20, 45, 70, 95, 120],
+          "ratios": {"total_ad": 0.85, "bonus_ad": 0.35, "ap": 0.8}
+        },
+        {
+          "name": "Second shot (crit-ready)",
+          "damage_type": "physical",
+          "base": [20, 45, 70, 95, 120],
+          "ratios": {"total_ad": 0.85, "bonus_ad": 0.35, "ap": 0.8},
+          "can_crit": true
+        }
+      ]
+    },
+    "E": {
+      "slot": "E",
+      "name": "Make It Rain",
+      "cooldown": [16, 14, 12, 10, 8],
+      "cast_time": 0.4,
+      "hits": [
+        {
+          "name": "Rain",
+          "damage_type": "magical",
+          "base": [60, 90, 120, 150, 180],
+          "ratios": {"ap": 0.8}
+        }
+      ]
+    },
+    "R": {
+      "slot": "R",
+      "name": "Bullet Time",
+      "cooldown": [120, 100, 80],
+      "cast_time": 2.5,
+      "repeat": 12,
+      "hits": [
+        {
+          "name": "Wave",
+          "damage_type": "physical",
+          "base": [30, 50, 70],
+          "ratios": {"total_ad": 0.2, "ap": 0.2},
+          "can_crit": true
+        }
+      ]
+    }
+  }
+}
